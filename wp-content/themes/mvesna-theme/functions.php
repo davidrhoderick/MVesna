@@ -47,7 +47,7 @@ class MVesnaThemeSite extends Timber\Site {
     add_filter('get_twig', array($this, 'add_to_twig'));
     add_filter('show_admin_bar', '__return_false');
     // add_action('init', array($this, 'register_taxonomies'));
-    // add_action('init', array($this, 'register_post_types'));
+    add_action('init', array($this, 'register_post_types'));
 
     add_filter('get_image_tag_class',array($this, 'use_only_imgfluid_class'));
     add_filter('post_thumbnail_html', array($this, 'remove_width_attribute'), 10);
@@ -93,42 +93,42 @@ class MVesnaThemeSite extends Timber\Site {
 
   /** This is where you can register custom post types. */
   public function register_post_types() {
-    // EXHIBITIONS
-    // $labels = array(
-    //   'name'                  =>_x('Exhibitions', 'post type general name', 'artlytical-media'),
-    //   'singular_name'         =>_x('Exhibition', 'post type singular name', 'artlytical-media'),
-    //   'menu_name'             =>_x('Exhibitions', 'admin menu', 'artlytical-media'),
-    //   'name_admin_bar'        =>_x('Exhibition', 'add new on admin bar', 'artlytical-media'),
-    //   'add_new'               =>_x('Add Exhibition', 'exhibit', 'artlytical-media'),
-    //   'add_new_item'          =>__('Add New Exhibition', 'artlytical-media'),
-    //   'new_item'              =>__('New Exhibition', 'artlytical-media'),
-    //   'edit_item'             =>__('Edit Exhibition', 'artlytical-media'),
-    //   'view_item'             =>__('View Exhibitions', 'artlytical-media'),
-    //   'all_items'             =>__('All Exhibitions', 'artlytical-media'),
-    //   'search_items'          =>__('Search Exhibitions', 'artlytical-media'),
-    //   'parent_item_colon'     =>__('Parent Exhibition:', 'artlytical-media'),
-    //   'not_found'             =>__('No exhibitions found.', 'artlytical-media'),
-    //   'not_found_in_trash'    =>__('No exhibitions found in Trash.', 'artlytical-media')
-    // );
+    // POP-UPS
+    $labels = array(
+      'name'                  =>_x('Pop-ups', 'post type general name', 'artlytical-media'),
+      'singular_name'         =>_x('Pop-up', 'post type singular name', 'artlytical-media'),
+      'menu_name'             =>_x('Pop-ups', 'admin menu', 'artlytical-media'),
+      'name_admin_bar'        =>_x('Pop-up', 'add new on admin bar', 'artlytical-media'),
+      'add_new'               =>_x('Add Pop-up', 'exhibit', 'artlytical-media'),
+      'add_new_item'          =>__('Add New Pop-up', 'artlytical-media'),
+      'new_item'              =>__('New Pop-up', 'artlytical-media'),
+      'edit_item'             =>__('Edit Pop-up', 'artlytical-media'),
+      'view_item'             =>__('View Pop-ups', 'artlytical-media'),
+      'all_items'             =>__('All Pop-ups', 'artlytical-media'),
+      'search_items'          =>__('Search Pop-ups', 'artlytical-media'),
+      'parent_item_colon'     =>__('Parent Pop-up:', 'artlytical-media'),
+      'not_found'             =>__('No pop-ups found.', 'artlytical-media'),
+      'not_found_in_trash'    =>__('No pop-ups found in Trash.', 'artlytical-media')
+    );
 
-    // $args = array(
-    //   'labels'             => $labels,
-    //   'description'        => __('Description.', 'artlytical-media'),
-    //   'public'             => true,
-    //   'publicly_queryable' => true,
-    //   'show_ui'            => true,
-    //   'show_in_menu'       => true,
-    //   'query_var'          => true,
-    //   'rewrite'            => array('slug' => 'exhibition'),
-    //   'capability_type'    => 'post',
-    //   'has_archive'        => false,
-    //   'hierarchical'       => false,
-    //   'menu_position'      => null,
-    //   'supports'           => array('title', 'editor', 'thumbnail', 'revisions', 'page-attributes'),
-    //   'menu_icon'					 =>'dashicons-format-image'
-    // );
+    $args = array(
+      'labels'             => $labels,
+      'description'        => __('Description.', 'artlytical-media'),
+      'public'             => true,
+      'publicly_queryable' => true,
+      'show_ui'            => true,
+      'show_in_menu'       => true,
+      'query_var'          => true,
+      'rewrite'            => array('slug' => 'popups'),
+      'capability_type'    => 'post',
+      'has_archive'        => false,
+      'hierarchical'       => false,
+      'menu_position'      => null,
+      'supports'           => array('title', 'editor', 'revisions'),
+      'menu_icon'					 =>'dashicons-slides'
+    );
 
-    // register_post_type('exhibition', $args);
+    register_post_type('popup', $args);
   }
 
   public function register_taxonomies() {
