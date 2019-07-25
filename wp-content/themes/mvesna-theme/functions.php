@@ -46,7 +46,7 @@ class MVesnaThemeSite extends Timber\Site {
     add_filter('timber_context', array($this, 'add_to_context'));
     add_filter('get_twig', array($this, 'add_to_twig'));
     add_filter('show_admin_bar', '__return_false');
-    // add_action('init', array($this, 'register_taxonomies'));
+    add_action('init', array($this, 'register_taxonomies'));
     add_action('init', array($this, 'register_post_types'));
 
     add_filter('get_image_tag_class',array($this, 'use_only_imgfluid_class'));
@@ -93,13 +93,51 @@ class MVesnaThemeSite extends Timber\Site {
 
   /** This is where you can register custom post types. */
   public function register_post_types() {
+    // PORTFOLIO
+    $labels = array(
+      'name'                  =>_x('Portfolio', 'post type general name', 'artlytical-media'),
+      'singular_name'         =>_x('Portfolio Piece', 'post type singular name', 'artlytical-media'),
+      'menu_name'             =>_x('Portfolio', 'admin menu', 'artlytical-media'),
+      'name_admin_bar'        =>_x('Portfolio Piece', 'add new on admin bar', 'artlytical-media'),
+      'add_new'               =>_x('Add Portfolio Piece', 'portfolio-piece', 'artlytical-media'),
+      'add_new_item'          =>__('Add New Portfolio Piece', 'artlytical-media'),
+      'new_item'              =>__('New Portfolio Piece', 'artlytical-media'),
+      'edit_item'             =>__('Edit Portfolio Piece', 'artlytical-media'),
+      'view_item'             =>__('View Portfolio', 'artlytical-media'),
+      'all_items'             =>__('Whole Portfolio', 'artlytical-media'),
+      'search_items'          =>__('Search Portfolio', 'artlytical-media'),
+      'parent_item_colon'     =>__('Parent Portfolio Piece:', 'artlytical-media'),
+      'not_found'             =>__('No portfolio pieces found.', 'artlytical-media'),
+      'not_found_in_trash'    =>__('No portfolio pieces found in Trash.', 'artlytical-media')
+    );
+
+    $args = array(
+      'labels'             => $labels,
+      'description'        => __('Description.', 'artlytical-media'),
+      'public'             => true,
+      'publicly_queryable' => true,
+      'show_ui'            => true,
+      'show_in_menu'       => true,
+      'show_in_nav_menus'  => true,
+      'query_var'          => true,
+      'rewrite'            => array('slug' => 'portfolio'),
+      'capability_type'    => 'post',
+      'has_archive'        => false,
+      'hierarchical'       => false,
+      'menu_position'      => null,
+      'supports'           => array('title', 'editor', 'thumbnail', 'revisions'),
+      'menu_icon'					 =>'dashicons-format-gallery'
+    );
+
+    register_post_type('portfolio', $args);
+
     // POP-UPS
     $labels = array(
       'name'                  =>_x('Pop-ups', 'post type general name', 'artlytical-media'),
       'singular_name'         =>_x('Pop-up', 'post type singular name', 'artlytical-media'),
       'menu_name'             =>_x('Pop-ups', 'admin menu', 'artlytical-media'),
       'name_admin_bar'        =>_x('Pop-up', 'add new on admin bar', 'artlytical-media'),
-      'add_new'               =>_x('Add Pop-up', 'exhibit', 'artlytical-media'),
+      'add_new'               =>_x('Add Pop-up', 'pop-up', 'artlytical-media'),
       'add_new_item'          =>__('Add New Pop-up', 'artlytical-media'),
       'new_item'              =>__('New Pop-up', 'artlytical-media'),
       'edit_item'             =>__('Edit Pop-up', 'artlytical-media'),
@@ -133,36 +171,36 @@ class MVesnaThemeSite extends Timber\Site {
   }
 
   public function register_taxonomies() {
-    // RESOURCE TYPES
-    // $labels = array(
-    // 	'name'                       => _x('Resource Types', 'taxonomy general name', 'artlytical-media'),
-    // 	'singular_name'              => _x('Resource Type', 'taxonomy singular name', 'artlytical-media'),
-    // 	'search_items'               => __('Search Resource Types', 'artlytical-media'),
-    // 	'all_items'                  => __('All Resource Types', 'artlytical-media'),
-    // 	'parent_item'                => null,
-    // 	'parent_item_colon'          => null,
-    // 	'edit_item'                  => __('Edit Resource Type', 'artlytical-media'),
-    // 	'update_item'                => __('Update Resource Type', 'artlytical-media'),
-    // 	'add_new_item'               => __('Add New Resource Type', 'artlytical-media'),
-    // 	'new_item_name'              => __('New Resource Type Name', 'artlytical-media'),
-    // 	'separate_items_with_commas' => __('Separate resource types with commas', 'artlytical-media'),
-    // 	'add_or_remove_items'        => __('Add or remove resource types', 'artlytical-media'),
-    // 	'not_found'                  => __('No resource types found.', 'artlytical-media'),
-    // 	'menu_name'                  => __('Resource Types', 'artlytical-media'),
-    // 	'choose_from_most_used'			 => __('Choose from most used resource types', 'artlytical-media')
-    // );
+    // PORTFOLIO TAGS
+    $labels = array(
+    	'name'                       => _x('Portfolio Tags', 'taxonomy general name', 'artlytical-media'),
+    	'singular_name'              => _x('Portfolio Tag', 'taxonomy singular name', 'artlytical-media'),
+    	'search_items'               => __('Search Portfolio Tags', 'artlytical-media'),
+    	'all_items'                  => __('All Portfolio Tags', 'artlytical-media'),
+    	'parent_item'                => null,
+    	'parent_item_colon'          => null,
+    	'edit_item'                  => __('Edit Portfolio Tag', 'artlytical-media'),
+    	'update_item'                => __('Update Portfolio Tag', 'artlytical-media'),
+    	'add_new_item'               => __('Add New Portfolio Tag', 'artlytical-media'),
+    	'new_item_name'              => __('New Portfolio Tag Name', 'artlytical-media'),
+    	'separate_items_with_commas' => __('Separate portfolio tags with commas', 'artlytical-media'),
+    	'add_or_remove_items'        => __('Add or remove portfolio tags', 'artlytical-media'),
+    	'not_found'                  => __('No portfolio tags found.', 'artlytical-media'),
+    	'menu_name'                  => __('Portfolio Tags', 'artlytical-media'),
+    	'choose_from_most_used'			 => __('Choose from most used portfolio tags', 'artlytical-media')
+    );
 
-    // $args = array(
-    // 	'hierarchical'          => false,
-    // 	'labels'                => $labels,
-    // 	'show_ui'               => true,
-    // 	'show_admin_column'     => true,
-    // 	'update_count_callback' => '_update_post_term_count',
-    // 	'query_var'             => true,
-    // 	'rewrite'               => array('slug' => 'resource-type'),
-    // );
+    $args = array(
+    	'hierarchical'          => false,
+    	'labels'                => $labels,
+    	'show_ui'               => true,
+    	'show_admin_column'     => true,
+    	'update_count_callback' => '_update_post_term_count',
+    	'query_var'             => true,
+    	'rewrite'               => array('slug' => 'portfolio-tag'),
+    );
 
-    // register_taxonomy('resource_type', 'board_resource', $args);
+    register_taxonomy('portfolio_tags', 'portfolio', $args);
   }
 
   /** This is where you add some context
