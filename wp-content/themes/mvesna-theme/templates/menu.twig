@@ -4,7 +4,7 @@
 			{% set post_type = fn('get_post_type', fn('get_post_meta', item.ID, '_menu_item_object_id', true)) %}
 
 			<li class="nav-item{% if item.current %} active{% endif %}">
-				<a {% if item.target %}target="{{item.target}}"{% endif %} class="nav-link" {% if post_type != 'popup' %}href="{{item.link}}"{% else %}href="#" data-toggle="modal" data-target="#{{item.path|trim('/')|replace('/', '-')}}"{% endif %}>{{item.title}} - {{post_type}}</a>
+				<a {% if item.target %}target="{{item.target}}"{% endif %} class="nav-link" {% if post_type != 'popup' %}href="{{item.link}}"{% else %}href="#" data-toggle="modal" data-target="#{{item.path|trim('/')|replace('/', '-')}}"{% endif %}>{{item.title}}</a>
 
 				{% include "menu.twig" with {'items': item.children} %}
 			</li>
