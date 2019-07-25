@@ -1,0 +1,13 @@
+.portfolio-gallery-image {
+  content: " ";
+  // display: inline-block;
+
+  background: {
+    size: 100%;
+    size: cover;
+    position: center;
+    repeat: no-repeat;
+  }
+
+  padding-top: 33%;
+}
