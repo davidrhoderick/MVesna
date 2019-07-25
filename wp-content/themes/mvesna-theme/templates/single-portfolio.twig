@@ -1,0 +1,37 @@
+{% extends "base.twig" %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <img class="img-fluid" src="{{post.thumbnail.src}}">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 col-md-8">
+        <h1 class="text-uppercase">{{post.title}}</h1>
+
+        {{post.content}}
+      </div>
+
+      <div class="col-12 col-md-4 text-right">
+        <h2 class="h1 text-uppercase">Project Details</h2>
+
+        <ul class="list-unstyled">
+          {% for tag in post.terms('portfolio_tags') %}
+            <li>{{tag}}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        {% for image in post.gallery %}
+          <img src="{{TimberImage(image).src}}" class="img-fluid">
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock %}
