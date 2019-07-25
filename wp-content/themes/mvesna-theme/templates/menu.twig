@@ -1,10 +1,13 @@
 {% if menu %}
-	<ul>
-	{% for item in items %}
-		<li class="{{ item.classes | join(' ') }}">
-			<a target="{{ item.target }}" href="{{ item.link }}">{{ item.title }}</a>
-			{% include "menu.twig" with {'items': item.children} %}
-		</li>
-	{% endfor %}
+	<ul class="navbar-nav">
+		{% for item in items %}
+			{% set post_type = fn('get_post_type', fn('get_post_meta', item.ID, '_menu_item_object_id', true)) %}
+
+			<li class="nav-item{% if item.current %} active{% endif %}">
+				<a {% if item.target %}target="{{item.target}}"{% endif %} class="nav-link" {% if post_type != 'popup' %}href="{{item.link}}"{% else %}href="#" data-toggle="modal" data-target="#{{item.path|trim('/')|replace('/', '-')}}"{% endif %}>{{item.title}} - {{post_type}}</a>
+
+				{% include "menu.twig" with {'items': item.children} %}
+			</li>
+		{% endfor %}
 	</ul>
 {% endif %}

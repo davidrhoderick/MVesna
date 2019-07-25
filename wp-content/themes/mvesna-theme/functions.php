@@ -118,8 +118,9 @@ class MVesnaThemeSite extends Timber\Site {
       'publicly_queryable' => true,
       'show_ui'            => true,
       'show_in_menu'       => true,
+      'show_in_nav_menus'  => true,
       'query_var'          => true,
-      'rewrite'            => array('slug' => 'popups'),
+      'rewrite'            => array('slug' => 'popup'),
       'capability_type'    => 'post',
       'has_archive'        => false,
       'hierarchical'       => false,
@@ -170,8 +171,10 @@ class MVesnaThemeSite extends Timber\Site {
    */
   public function add_to_context($context) {
     $context['options'] = get_fields('options');
-		$context['menu'] = new Timber\Menu();
+    $context['menu'] = new Timber\Menu();
     $context['site'] = $this;
+
+    $context['popups'] = new Timber\PostQuery(array('post_type' => 'popup'));
     return $context;
   }
 
