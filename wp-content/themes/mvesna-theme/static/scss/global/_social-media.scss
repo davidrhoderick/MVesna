@@ -1,0 +1,34 @@
+.social-media {
+  content: "";
+  display: inline-block;
+  height: 24px;
+  width: 24px;
+
+  background: {
+    size: 100%;
+    position: center;
+    repeat: no-repeat;
+  }
+
+  border: none !important;
+
+  &.instagram {
+    background-image: url('static/images/social-media/48x48-Instagram.png');
+  }
+
+  &.behance {
+    background-image: url('static/images/social-media/48x48-Behance.png');
+  }
+
+  &.linkedin {
+    background-image: url('static/images/social-media/48x48-LinkedIn.png');
+  }
+
+  &.pinterest {
+    background-image: url('static/images/social-media/48x48-Pinterest.png');
+  }
+
+  &.facebook {
+    background-image: url('static/images/social-media/48x48-Facebook.png');
+  }
+}

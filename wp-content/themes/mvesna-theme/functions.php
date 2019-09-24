@@ -275,6 +275,10 @@ class MVesnaThemeSite extends Timber\Site {
   public function add_to_twig($twig) {
 
     $twig->getExtension('Twig_Extension_Core')->setTimezone('CEST');
+
+    $twig->addFilter('preg_replace', new Twig_Filter_Function(function ($subject, $pattern, $replacement) {
+      return preg_replace($pattern, $replacement, $subject);
+    }));
     
     return $twig;
   }

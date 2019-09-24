@@ -4,7 +4,7 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <img class="img-fluid" src="{{post.thumbnail.src}}">
+        <img class="img-fluid w-100" src="{{post.thumbnail.src('large')}}">
       </div>
     </div>
 
@@ -29,7 +29,7 @@
     <div class="row">
       <div class="col">
         {% for image in post.gallery %}
-          <img src="{{TimberImage(image).src}}" class="img-fluid">
+          <img src="{{TimberImage(image).src('large')}}" class="img-fluid w-100">
         {% endfor %}
       </div>
     </div>

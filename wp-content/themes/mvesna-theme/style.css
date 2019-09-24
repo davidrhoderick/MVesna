@@ -7023,25 +7023,6 @@ header.header .navbar-brand {
     flex-direction: row;
     margin-top: 1rem; } }
 
-header.header .navbar-right .social-media {
-  content: "";
-  height: 24px;
-  width: 24px;
-  background-size: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  border: none !important; }
-  header.header .navbar-right .social-media.instagram {
-    background-image: url("static/images/social-media/48x48-Instagram.png"); }
-  header.header .navbar-right .social-media.behance {
-    background-image: url("static/images/social-media/48x48-Behance.png"); }
-  header.header .navbar-right .social-media.linkedin {
-    background-image: url("static/images/social-media/48x48-LinkedIn.png"); }
-  header.header .navbar-right .social-media.pinterest {
-    background-image: url("static/images/social-media/48x48-Pinterest.png"); }
-  header.header .navbar-right .social-media.facebook {
-    background-image: url("static/images/social-media/48x48-Facebook.png"); }
-
 #content {
   margin-top: 91px; }
 
@@ -7088,6 +7069,26 @@ a {
       width: 80%; }
   .portfolio-gallery-image:hover .piece-description {
     opacity: 1; }
+
+.social-media {
+  content: "";
+  display: inline-block;
+  height: 24px;
+  width: 24px;
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none !important; }
+  .social-media.instagram {
+    background-image: url("static/images/social-media/48x48-Instagram.png"); }
+  .social-media.behance {
+    background-image: url("static/images/social-media/48x48-Behance.png"); }
+  .social-media.linkedin {
+    background-image: url("static/images/social-media/48x48-LinkedIn.png"); }
+  .social-media.pinterest {
+    background-image: url("static/images/social-media/48x48-Pinterest.png"); }
+  .social-media.facebook {
+    background-image: url("static/images/social-media/48x48-Facebook.png"); }
 
 #front #hero {
   padding-top: 20%;

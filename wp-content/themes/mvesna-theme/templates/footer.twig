@@ -1,1 +1,47 @@
-Copyright {{"now"|date('Y')}}
+<div class="container border-top border-primary text-center">
+  {% if options.footer_text %}
+    <div class="row mt-2">
+      <div class="col">
+        <p>{{options.footer_text}}</p>
+      </div>
+    </div>
+  {% endif %}
+
+  {% if options.footer_segments %}
+    <div class="row">
+      <div class="col">
+        {% for segment_key, segment in options.footer_segments %}
+          {% if segment_key == 'email_address' %}
+            <a target="_blank" href="mailto:{{segment}}">{{segment}}</a>
+          {% elseif segment_key == 'phone_number' %}
+            <a target="_blank" href="tel:{{segment|preg_replace('/[^0-9]/', '')}}">{{segment}}</a>
+          {% elseif segment_key == 'client_form' %}
+            <a href="{{segment}}">Client form</a>
+          {% elseif segment_key == 'copyright_owner' %}
+            &copy; {{"now"|date('Y')}} {{segment}}
+          {% else %}
+            {{segment}}
+          {% endif %}
+
+          {% if not loop.last %}
+            |
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+  <div class="row mt-2">
+    <div class="col">
+      {% if options.social_media_networks %}
+        <ul class="list-inline">
+          {% for network_name, network_link in options.social_media_networks if network_link %}
+            <li class="list-inline-item">
+              <a class="social-media {{network_name}}" target="_blank" href="{{network_link}}"></a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+  </div>
+</div>
