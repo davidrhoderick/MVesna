@@ -17611,3 +17611,84 @@ return jQuery;
 }));
 //# sourceMappingURL=bootstrap.bundle.js.map
 
+
+$(function() {
+  // $(document).load(function() {
+    var $popupAnchors = $('a[href*="' + window.location.hostname + '"][href*="/popup/"], a[href*="/popup/"]');
+
+    $popupAnchors.each(function() {
+      var $this = $(this),
+          popupTarget = this.pathname.replace(/^\/+|\/+$/g, '').replace('/', '-');
+
+      $this.attr('data-toggle', 'modal');
+      $this.attr('data-target', '#' + popupTarget);
+      $this.attr('href', '#');
+    });
+  // });
+});
+
+$(window).on('load', function() {
+  var $animatedText = $('.animated-text-after-logo');
+
+  if($animatedText.length > 0) {
+    var startLength = $animatedText.width() + 'px',
+        animationTrigger = $animatedText.attr('data-animation-trigger'),
+        textShown = true,
+        animateLogo = function () {
+          if(this.scrollY > animationTrigger) {
+            if(textShown) {
+              $animatedText.animate({
+                width: '0'
+              }, 300);
+              
+              textShown = false;
+            }
+          } else {
+            if(!textShown) {
+              $animatedText.animate({
+                width: startLength
+              }, 300);
+              
+              textShown = true;
+            }
+          }
+        };
+
+    animateLogo();
+
+    window.addEventListener('scroll', animateLogo);
+
+    window.addEventListener('resize load', function() {
+      startLength = $animatedText.width();
+      animateLogo();
+    });
+  }
+});
+
+$(function() {
+  var $portfolioPieces = $('.portfolio-gallery-image'),
+      hexToRGB = function (hex, alpha) {
+        var r = parseInt(hex.slice(1, 3), 16),
+            g = parseInt(hex.slice(3, 5), 16),
+            b = parseInt(hex.slice(5, 7), 16);
+
+        if(alpha) {
+          return "rgba(" + r + ", " + g + ", " + b + ", " + alpha + ")";
+        } else {
+          return "rgb(" + r + ", " + g + ", " + b + ")";
+        }
+      };
+
+hexToRGB('#FF0000', 0.5);;
+
+  if($portfolioPieces.length > 0) {
+    $portfolioPieces.each(function() {
+      var $piece = $(this),
+          highlightColor = $piece.attr('data-highlight-color'),
+          $description = $piece.find('.piece-description');
+
+      $description.css('background-color', hexToRGB(highlightColor, 0.7));
+    });
+  }
+});
+//# sourceMappingURL=site.js.map

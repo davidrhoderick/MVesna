@@ -1,0 +1,63 @@
+{% extends "base.twig" %}
+
+{% block content %}
+	<div id="front">
+    <div id="hero" style="background-image: url({{TimberImage(post.hero_image).src('large')}}">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <h1 class="font-weight-bolder" id="hero-title">{{post.hero_title}}</h1>
+
+            <a class="btn btn-lg btn-outline-primary" href="{{post.hero_button_1.url}}"{% if post.hero_button_1.target %} target="{{post.hero_button_1.target}}"{% endif %}>{{post.hero_button_1.title}}</a>
+
+            <a class="btn btn-lg btn-primary" href="{{post.hero_button_2.url}}"{% if post.hero_button_2.target %} target="{{post.hero_button_2.target}}"{% endif %}>{{post.hero_button_2.title}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="about">
+      <div class="container">
+        <div class="border-top border-primary row my-3 py-3">
+          <div class="col-12 col-md-10 col-lg-9 mx-auto text-center">
+            <h2>{{post.about_title}}</h2>
+
+            {{post.about_content}}
+          </div>
+        </div>
+
+        <div class="row mt-3">
+          <div class="col text-center">
+            <p class="mb-0 lead"><em><a href="{{post.about_link.url}}"{% if post.about_link.target %} target="{{post.about_link.target}}"{% endif %}>{{post.about_link.title}}</a></em></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="portfolio">
+      <div class="container">
+        <div class="border-top border-primary row my-3 py-3">
+          <div class="col-12 col-md-10 col-lg-9 mx-auto text-center">
+            <h2>{{post.portfolio_title}}</h2>
+        
+            {{post.portfolio_content}}
+          </div>
+        </div>
+
+        {% if portfolio %}
+          <div class="row">
+            {% for index, piece in portfolio %}
+              {% include 'partial/portfolio-piece-link.twig' %}
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <div class="row mt-3">
+          <div class="col text-center">
+            <h3 class="mb-0"><a href="{{post.portfolio_link.url}}"{% if post.portfolio_link.target %} target="{{post.portfolio_link.target}}"{% endif %}>{{post.portfolio_link.title}}</a></h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

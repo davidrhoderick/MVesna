@@ -46,8 +46,8 @@ class MVesnaThemeSite extends Timber\Site {
     add_filter('timber_context', array($this, 'add_to_context'));
     add_filter('get_twig', array($this, 'add_to_twig'));
     add_filter('show_admin_bar', '__return_false');
-    // add_action('init', array($this, 'register_taxonomies'));
-    // add_action('init', array($this, 'register_post_types'));
+    add_action('init', array($this, 'register_taxonomies'));
+    add_action('init', array($this, 'register_post_types'));
 
     add_filter('get_image_tag_class',array($this, 'use_only_imgfluid_class'));
     add_filter('post_thumbnail_html', array($this, 'remove_width_attribute'), 10);
@@ -60,6 +60,8 @@ class MVesnaThemeSite extends Timber\Site {
 
     add_action('wp_enqueue_scripts', array($this, 'add_typekit'));
     add_action('wp_enqueue_scripts', array($this, 'add_googlefonts'));
+    add_action('wp_enqueue_scripts', array($this, 'custom_styles'));
+    add_action('wp_enqueue_scripts', array($this, 'social_media_logos'));
     
     add_action('wp_enqueue_scripts', array($this, 'add_googleanalytics'));
 
@@ -93,75 +95,114 @@ class MVesnaThemeSite extends Timber\Site {
 
   /** This is where you can register custom post types. */
   public function register_post_types() {
-    // EXHIBITIONS
-    // $labels = array(
-    //   'name'                  =>_x('Exhibitions', 'post type general name', 'artlytical-media'),
-    //   'singular_name'         =>_x('Exhibition', 'post type singular name', 'artlytical-media'),
-    //   'menu_name'             =>_x('Exhibitions', 'admin menu', 'artlytical-media'),
-    //   'name_admin_bar'        =>_x('Exhibition', 'add new on admin bar', 'artlytical-media'),
-    //   'add_new'               =>_x('Add Exhibition', 'exhibit', 'artlytical-media'),
-    //   'add_new_item'          =>__('Add New Exhibition', 'artlytical-media'),
-    //   'new_item'              =>__('New Exhibition', 'artlytical-media'),
-    //   'edit_item'             =>__('Edit Exhibition', 'artlytical-media'),
-    //   'view_item'             =>__('View Exhibitions', 'artlytical-media'),
-    //   'all_items'             =>__('All Exhibitions', 'artlytical-media'),
-    //   'search_items'          =>__('Search Exhibitions', 'artlytical-media'),
-    //   'parent_item_colon'     =>__('Parent Exhibition:', 'artlytical-media'),
-    //   'not_found'             =>__('No exhibitions found.', 'artlytical-media'),
-    //   'not_found_in_trash'    =>__('No exhibitions found in Trash.', 'artlytical-media')
-    // );
+    // PORTFOLIO
+    $labels = array(
+      'name'                  =>_x('Portfolio', 'post type general name', 'artlytical-media'),
+      'singular_name'         =>_x('Portfolio Piece', 'post type singular name', 'artlytical-media'),
+      'menu_name'             =>_x('Portfolio', 'admin menu', 'artlytical-media'),
+      'name_admin_bar'        =>_x('Portfolio Piece', 'add new on admin bar', 'artlytical-media'),
+      'add_new'               =>_x('Add Portfolio Piece', 'portfolio-piece', 'artlytical-media'),
+      'add_new_item'          =>__('Add New Portfolio Piece', 'artlytical-media'),
+      'new_item'              =>__('New Portfolio Piece', 'artlytical-media'),
+      'edit_item'             =>__('Edit Portfolio Piece', 'artlytical-media'),
+      'view_item'             =>__('View Portfolio', 'artlytical-media'),
+      'all_items'             =>__('Whole Portfolio', 'artlytical-media'),
+      'search_items'          =>__('Search Portfolio', 'artlytical-media'),
+      'parent_item_colon'     =>__('Parent Portfolio Piece:', 'artlytical-media'),
+      'not_found'             =>__('No portfolio pieces found.', 'artlytical-media'),
+      'not_found_in_trash'    =>__('No portfolio pieces found in Trash.', 'artlytical-media')
+    );
 
-    // $args = array(
-    //   'labels'             => $labels,
-    //   'description'        => __('Description.', 'artlytical-media'),
-    //   'public'             => true,
-    //   'publicly_queryable' => true,
-    //   'show_ui'            => true,
-    //   'show_in_menu'       => true,
-    //   'query_var'          => true,
-    //   'rewrite'            => array('slug' => 'exhibition'),
-    //   'capability_type'    => 'post',
-    //   'has_archive'        => false,
-    //   'hierarchical'       => false,
-    //   'menu_position'      => null,
-    //   'supports'           => array('title', 'editor', 'thumbnail', 'revisions', 'page-attributes'),
-    //   'menu_icon'					 =>'dashicons-format-image'
-    // );
+    $args = array(
+      'labels'             => $labels,
+      'description'        => __('Description.', 'artlytical-media'),
+      'public'             => true,
+      'publicly_queryable' => true,
+      'show_ui'            => true,
+      'show_in_menu'       => true,
+      'show_in_nav_menus'  => true,
+      'query_var'          => true,
+      'rewrite'            => array('slug' => 'portfolio'),
+      'capability_type'    => 'post',
+      'has_archive'        => false,
+      'hierarchical'       => false,
+      'menu_position'      => null,
+      'supports'           => array('title', 'editor', 'excerpt', 'thumbnail', 'revisions'),
+      'menu_icon'					 =>'dashicons-format-gallery'
+    );
 
-    // register_post_type('exhibition', $args);
+    register_post_type('portfolio', $args);
+
+    // POP-UPS
+    $labels = array(
+      'name'                  =>_x('Pop-ups', 'post type general name', 'artlytical-media'),
+      'singular_name'         =>_x('Pop-up', 'post type singular name', 'artlytical-media'),
+      'menu_name'             =>_x('Pop-ups', 'admin menu', 'artlytical-media'),
+      'name_admin_bar'        =>_x('Pop-up', 'add new on admin bar', 'artlytical-media'),
+      'add_new'               =>_x('Add Pop-up', 'pop-up', 'artlytical-media'),
+      'add_new_item'          =>__('Add New Pop-up', 'artlytical-media'),
+      'new_item'              =>__('New Pop-up', 'artlytical-media'),
+      'edit_item'             =>__('Edit Pop-up', 'artlytical-media'),
+      'view_item'             =>__('View Pop-ups', 'artlytical-media'),
+      'all_items'             =>__('All Pop-ups', 'artlytical-media'),
+      'search_items'          =>__('Search Pop-ups', 'artlytical-media'),
+      'parent_item_colon'     =>__('Parent Pop-up:', 'artlytical-media'),
+      'not_found'             =>__('No pop-ups found.', 'artlytical-media'),
+      'not_found_in_trash'    =>__('No pop-ups found in Trash.', 'artlytical-media')
+    );
+
+    $args = array(
+      'labels'             => $labels,
+      'description'        => __('Description.', 'artlytical-media'),
+      'public'             => true,
+      'publicly_queryable' => true,
+      'show_ui'            => true,
+      'show_in_menu'       => true,
+      'show_in_nav_menus'  => true,
+      'query_var'          => true,
+      'rewrite'            => array('slug' => 'popup'),
+      'capability_type'    => 'post',
+      'has_archive'        => false,
+      'hierarchical'       => false,
+      'menu_position'      => null,
+      'supports'           => array('title', 'editor', 'revisions'),
+      'menu_icon'					 =>'dashicons-slides'
+    );
+
+    register_post_type('popup', $args);
   }
 
   public function register_taxonomies() {
-    // RESOURCE TYPES
-    // $labels = array(
-    // 	'name'                       => _x('Resource Types', 'taxonomy general name', 'artlytical-media'),
-    // 	'singular_name'              => _x('Resource Type', 'taxonomy singular name', 'artlytical-media'),
-    // 	'search_items'               => __('Search Resource Types', 'artlytical-media'),
-    // 	'all_items'                  => __('All Resource Types', 'artlytical-media'),
-    // 	'parent_item'                => null,
-    // 	'parent_item_colon'          => null,
-    // 	'edit_item'                  => __('Edit Resource Type', 'artlytical-media'),
-    // 	'update_item'                => __('Update Resource Type', 'artlytical-media'),
-    // 	'add_new_item'               => __('Add New Resource Type', 'artlytical-media'),
-    // 	'new_item_name'              => __('New Resource Type Name', 'artlytical-media'),
-    // 	'separate_items_with_commas' => __('Separate resource types with commas', 'artlytical-media'),
-    // 	'add_or_remove_items'        => __('Add or remove resource types', 'artlytical-media'),
-    // 	'not_found'                  => __('No resource types found.', 'artlytical-media'),
-    // 	'menu_name'                  => __('Resource Types', 'artlytical-media'),
-    // 	'choose_from_most_used'			 => __('Choose from most used resource types', 'artlytical-media')
-    // );
+    // PORTFOLIO TAGS
+    $labels = array(
+    	'name'                       => _x('Portfolio Tags', 'taxonomy general name', 'artlytical-media'),
+    	'singular_name'              => _x('Portfolio Tag', 'taxonomy singular name', 'artlytical-media'),
+    	'search_items'               => __('Search Portfolio Tags', 'artlytical-media'),
+    	'all_items'                  => __('All Portfolio Tags', 'artlytical-media'),
+    	'parent_item'                => null,
+    	'parent_item_colon'          => null,
+    	'edit_item'                  => __('Edit Portfolio Tag', 'artlytical-media'),
+    	'update_item'                => __('Update Portfolio Tag', 'artlytical-media'),
+    	'add_new_item'               => __('Add New Portfolio Tag', 'artlytical-media'),
+    	'new_item_name'              => __('New Portfolio Tag Name', 'artlytical-media'),
+    	'separate_items_with_commas' => __('Separate portfolio tags with commas', 'artlytical-media'),
+    	'add_or_remove_items'        => __('Add or remove portfolio tags', 'artlytical-media'),
+    	'not_found'                  => __('No portfolio tags found.', 'artlytical-media'),
+    	'menu_name'                  => __('Portfolio Tags', 'artlytical-media'),
+    	'choose_from_most_used'			 => __('Choose from most used portfolio tags', 'artlytical-media')
+    );
 
-    // $args = array(
-    // 	'hierarchical'          => false,
-    // 	'labels'                => $labels,
-    // 	'show_ui'               => true,
-    // 	'show_admin_column'     => true,
-    // 	'update_count_callback' => '_update_post_term_count',
-    // 	'query_var'             => true,
-    // 	'rewrite'               => array('slug' => 'resource-type'),
-    // );
+    $args = array(
+    	'hierarchical'          => false,
+    	'labels'                => $labels,
+    	'show_ui'               => true,
+    	'show_admin_column'     => true,
+    	'update_count_callback' => '_update_post_term_count',
+    	'query_var'             => true,
+    	'rewrite'               => array('slug' => 'portfolio-tag'),
+    );
 
-    // register_taxonomy('resource_type', 'board_resource', $args);
+    register_taxonomy('portfolio_tags', 'portfolio', $args);
   }
 
   /** This is where you add some context
@@ -170,8 +211,10 @@ class MVesnaThemeSite extends Timber\Site {
    */
   public function add_to_context($context) {
     $context['options'] = get_fields('options');
-		$context['menu'] = new Timber\Menu();
+    $context['menu'] = new Timber\Menu();
     $context['site'] = $this;
+
+    $context['popups'] = new Timber\PostQuery(array('post_type' => 'popup'));
     return $context;
   }
 
@@ -234,6 +277,10 @@ class MVesnaThemeSite extends Timber\Site {
   public function add_to_twig($twig) {
 
     $twig->getExtension('Twig_Extension_Core')->setTimezone('CEST');
+
+    $twig->addFilter('preg_replace', new Twig_Filter_Function(function ($subject, $pattern, $replacement) {
+      return preg_replace($pattern, $replacement, $subject);
+    }));
     
     return $twig;
   }
@@ -306,6 +353,144 @@ class MVesnaThemeSite extends Timber\Site {
     if($google_fonts) {
       wp_enqueue_style('googlefonts', $google_fonts);
     }
+  }
+
+  public function custom_styles() {
+    wp_enqueue_style('style', get_stylesheet_uri());
+
+    $body_font_family  = get_field('body_font_family', 'options');
+    $body_font_size  = get_field('body_font_size', 'options');
+    $body_font_weight  = get_field('body_font_weight', 'options');
+
+    $bold_font_family = get_field('bold_font_family', 'options');
+    $bold_font_size = get_field('bold_font_size', 'options');
+    $bold_font_weight = get_field('bold_font_weight', 'options');
+
+    $buttons_font_family = get_field('buttons_font_family', 'options');
+    $buttons_font_size = get_field('buttons_font_size', 'options');
+    $buttons_font_weight = get_field('buttons_font_weight', 'options');
+
+    $text_logo_font_family = get_field('text_logo_font_font_family', 'options');
+    $text_logo_font_size = get_field('text_logo_font_font_size', 'options');
+    $text_logo_font_weight = get_field('text_logo_font_font_weight', 'options');
+
+    $hero_title_font_family = get_field('hero_title_font_family', 'options');
+    $hero_title_font_size = get_field('hero_title_font_size', 'options');
+    $hero_title_font_weight = get_field('hero_title_font_weight', 'options');
+
+    $h1_font_family  = get_field('h1_font_family', 'options');
+    $h1_font_size  = get_field('h1_font_size', 'options');
+    $h1_font_weight  = get_field('h1_font_weight', 'options');
+
+    $h2_font_family  = get_field('h2_font_family', 'options');
+    $h2_font_size  = get_field('h2_font_size', 'options');
+    $h2_font_weight  = get_field('h2_font_weight', 'options');
+
+    $h3_font_family  = get_field('h3_font_family', 'options');
+    $h3_font_size  = get_field('h3_font_size', 'options');
+    $h3_font_weight  = get_field('h3_font_weight', 'options');
+
+    $h4_font_family  = get_field('h4_font_family', 'options');
+    $h4_font_size  = get_field('h4_font_size', 'options');
+    $h4_font_weight  = get_field('h4_font_weight', 'options');
+
+    $h5_font_family  = get_field('h5_font_family', 'options');
+    $h5_font_size  = get_field('h5_font_size', 'options');
+    $h5_font_weight  = get_field('h5_font_weight', 'options');
+
+    $custom_fonts = "
+      body {
+        font-family: {$body_font_family};
+        font-size: {$body_font_size}px;
+        font-weight: {$body_font_weight};
+      }
+      
+      bold {
+        font-family: {$bold_font_family};
+        font-size: {$bold_font_size}px;
+        font-weight: {$bold_font_weight};
+      }
+      
+      .btn {
+        font-family: {$buttons_font_family};
+        font-size: {$buttons_font_size}px;
+        font-weight: {$buttons_font_weight};
+      }
+      
+      .animated-text-after-logo {
+        font-family: {$text_logo_font_family};
+        font-size: {$text_logo_font_size}px;
+        font-weight: {$text_logo_font_weight};
+      }
+      
+      #hero-title {
+        font-family: {$hero_title_font_family};
+        font-size: {$hero_title_font_size}px;
+        font-weight: {$hero_title_font_weight};
+      }
+      
+      h1 {
+        font-family: {$h1_font_family};
+        font-size: {$h1_font_size}px;
+        font-weight: {$h1_font_weight};
+      }
+      
+      h2 {
+        font-family: {$h2_font_family};
+        font-size: {$h2_font_size}px;
+        font-weight: {$h2_font_weight};
+      }
+      
+      h3 {
+        font-family: {$h3_font_family};
+        font-size: {$h3_font_size}px;
+        font-weight: {$h3_font_weight};
+      }
+      
+      h4 {
+        font-family: {$h4_font_family};
+        font-size: {$h4_font_size}px;
+        font-weight: {$h4_font_weight};
+      }
+      
+      h5 {
+        font-family: {$h5_font_family};
+        font-size: {$h5_font_size}px;
+        font-weight: {$h5_font_weight};
+      }";
+
+    wp_add_inline_style('style', $custom_fonts);
+  }
+
+  public function social_media_logos() {
+    $instagram_logo  = get_field('social_media_logos_instagram_logo', 'options');
+    $behance_logo  = get_field('social_media_logos_behance_logo', 'options');
+    $linkedin_logo  = get_field('social_media_logos_linkedin_logo', 'options');
+    $pinterest_logo  = get_field('social_media_logos_pinterest_logo', 'options');
+    $facebook_logo  = get_field('social_media_logos_facebook_logo', 'options');
+
+    $social_media_logos = "
+      .social-media.instagram {
+        background-image: url({$instagram_logo});
+      }
+      
+      .social-media.behance {
+        background-image: url({$behance_logo});
+      }
+      
+      .social-media.linkedin {
+        background-image: url({$linkedin_logo});
+      }
+      
+      .social-media.pinterest {
+        background-image: url({$pinterest_logo});
+      }
+      
+      .social-media.facebook {
+        background-image: url({$facebook_logo});
+      }";
+
+    wp_add_inline_style('style', $social_media_logos);
   }
 
   public function add_googleanalytics() {

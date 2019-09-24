@@ -1,0 +1,43 @@
+.project-navigation {
+  color: $primary;
+  font-size: 24px;
+
+  a {
+    font-style: italic;
+
+    &[disabled],
+    &:disabled {
+      color: $gray-500 !important;
+
+      .next-arrow {
+        background-image: url('static/images/symbols/arrow-right-gray.svg');
+      }
+  
+      .prev-arrow {
+        background-image: url('static/images/symbols/arrow-left-gray.svg');
+      }
+    }
+
+    .next-arrow,
+    .prev-arrow {
+      content: "";
+      display: inline-block;
+      height: 1rem;
+      width: 3.35rem;
+
+      background: {
+        size: 100%;
+        position: center;
+        repeat: no-repeat;
+      }
+    }
+
+    .next-arrow {
+      background-image: url('static/images/symbols/arrow-right.svg');
+    }
+
+    .prev-arrow {
+      background-image: url('static/images/symbols/arrow-left.svg');
+    }
+  }
+}

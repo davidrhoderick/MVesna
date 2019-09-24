@@ -1,0 +1,11 @@
+#footer {
+  a {
+    color: $body-color !important;
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: $primary !important;
+    }
+  }
+}

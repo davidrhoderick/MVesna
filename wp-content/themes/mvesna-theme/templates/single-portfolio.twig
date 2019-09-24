@@ -1,0 +1,43 @@
+{% extends "base.twig" %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <img class="img-fluid w-100" src="{{post.thumbnail.src('large')}}">
+      </div>
+    </div>
+
+    <div class="row mt-1">
+      <div class="col-12 col-md-8">
+        <h1 class="text-uppercase">{{post.title}}</h1>
+
+        {{post.content}}
+      </div>
+
+      <div class="col-12 col-md-4 text-right">
+        <h2 class="h1 text-uppercase">Project Details</h2>
+
+        <ul class="list-unstyled">
+          {% for tag in post.terms('portfolio_tags') %}
+            <li>{{tag}}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        {% for image in post.gallery %}
+          <img src="{{TimberImage(image).src('large')}}" class="img-fluid w-100">
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col text-center">
+        <p class="project-navigation"><a {% if post.prev.link %}href="{{post.prev.link}}"{% else %}disabled{% endif %}><span class="prev-arrow"></span> Previous project</a> | <a {% if post.next.link %}href="{{post.next.link}}"{% else %}disabled{% endif %}>Next project <span class="next-arrow"></span></a></p>
+      </div>
+    </div>
+  </div>
+{% endblock %}

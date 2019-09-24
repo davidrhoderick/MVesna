@@ -1,0 +1,57 @@
+.portfolio-gallery-image {
+  content: "";
+  position: relative;
+
+  background: {
+    size: 100%;
+    size: cover;
+    position: center;
+    repeat: no-repeat;
+  }
+
+  padding-top: 33%;
+
+  @include media-breakpoint-down(md) {
+    padding-top: 67%;
+  }
+  
+  border: none !important;
+
+  &:after {
+    content: "";
+    position: absolute;  
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    border: solid $body-bg 15px;
+    transition: border-width 0.3s;
+  }
+
+  .piece-description {
+    position: absolute;
+    top: 15px;
+    bottom: 15px;
+    right: 15px;
+    left: 15px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    transition: opacity 0.3s;
+    background: rgba($primary, 0.7);
+
+    h3, p {
+      color: white !important;
+      text-align: center;
+      width: 80%;
+    }
+  }
+
+  &:hover .piece-description {
+    opacity: 1;
+  }
+}

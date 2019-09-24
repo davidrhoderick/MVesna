@@ -5,21 +5,25 @@ var gulp        = require('gulp'),
     jshint      = require('gulp-jshint'),
     minify      = require('gulp-minify'),
     sassLint    = require('gulp-sass-lint'),
-    notify      = require('gulp-notify');
+    notify      = require('gulp-notify'),
+    sourcemaps  = require('gulp-sourcemaps');
 
 gulp.task('sass', function(){
   return gulp.src('static/scss/style.scss')
+    .pipe(sourcemaps.init())
     .pipe(sass())
-      .on('error', notify)
+      .on('error', sass.logError)
     .pipe(sassLint({
       files: { ignore: 'static/bower_components/**/*.scss' }
     }))
+    .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('./'))
     .pipe(browserSync.stream());
 });
 
 gulp.task('js', function(){
   return gulp.src('static/js/site.js')
+    .pipe(sourcemaps.init())
     .pipe(include())
       .on('error', notify)
     .pipe(jshint.reporter('default'))
@@ -29,6 +33,7 @@ gulp.task('js', function(){
         min: '.min.js'
       }
     }))
+    .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('static'))
     .pipe(browserSync.stream());
 });

@@ -1,0 +1,11 @@
+.form-group {
+  label {
+    color: $primary;
+    font-style: italic;
+  }
+
+  small.form-text {
+    color: $gray-600;
+    font-style: italic;
+  }
+}

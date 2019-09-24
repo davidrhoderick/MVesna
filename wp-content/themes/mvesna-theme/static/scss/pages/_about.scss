@@ -1,0 +1,13 @@
+.about-image-triptych {
+  .about-image-single {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+
+    background: {
+      size: 100%;
+      size: cover;
+      repeat: no-repeat;
+    }
+  }
+}

@@ -1,0 +1,39 @@
+header.header {
+  @include media-breakpoint-up(lg) {
+    width: 75% !important;
+    margin: 0 auto;
+  }
+
+  .navbar-brand {
+    position: relative;
+    border: none !important;
+
+    .brand-logo {
+      max-height: 3rem;
+      display: inline-block;
+    }
+
+    .animated-text-after-logo {
+      color: $primary;
+      font-weight: $font-weight-bold;
+      position: absolute;
+      font-size: 1.5rem;
+      display: inline-block;
+      overflow-x: hidden;
+      bottom: 0;
+      margin-left: -.5rem;
+      width: auto;
+    }
+  }
+
+  .navbar-right {
+    @include media-breakpoint-down(lg) {
+      flex-direction: row;
+      margin-top: 1rem;
+    }
+  } 
+}
+
+#content {
+  margin-top: 91px;
+}
