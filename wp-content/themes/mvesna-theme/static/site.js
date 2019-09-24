@@ -17611,3 +17611,43 @@ return jQuery;
 }));
 //# sourceMappingURL=bootstrap.bundle.js.map
 
+
+$(function() {
+  var $popupAnchors = $('a[href*="' + window.location.hostname + '"][href*="/popup/"]');
+
+  $popupAnchors.each(function() {
+    var $this = $(this),
+        popupTarget = this.pathname.replace(/^\/+|\/+$/g, '').replace('/', '-');
+
+    $this.attr('data-toggle', 'modal');
+    $this.attr('data-target', '#' + popupTarget);
+    $this.attr('href', '#');
+  });
+});
+
+$(function() {
+  var $animatedText = $('.animated-text-after-logo');
+
+  if($animatedText.length > 0) {
+    var startLength = $animatedText.width(),
+        animationScrollLength = $animatedText.attr('data-scroll-length'),
+        animateLogo = function () {
+          var animationProgress = this.scrollY / animationScrollLength;
+    
+          if(animationProgress < 1) {
+            $animatedText.css('width', startLength * (1 - animationProgress));
+          } else {
+            $animatedText.css('width', 0);
+          }
+        };
+
+    animateLogo();
+
+    window.addEventListener('scroll', animateLogo);
+
+    window.addEventListener('resize load', function() {
+      startLength = $animatedText.width();
+      animateLogo();
+    });
+  }
+});

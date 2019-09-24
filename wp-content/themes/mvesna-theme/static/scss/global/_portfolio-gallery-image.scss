@@ -1,0 +1,29 @@
+.portfolio-gallery-image {
+  content: "";
+  position: relative;
+
+  background: {
+    size: 100%;
+    size: cover;
+    position: center;
+    repeat: no-repeat;
+  }
+
+  padding-top: 33%;
+  border: none !important;
+
+  &:after {
+    content: "";
+    position: absolute;  
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    border: solid $body-bg 15px;
+    transition: border-width 0.3s;
+  }
+
+  &:hover:after {
+    border-width: 7px;
+  }
+}

@@ -25,4 +25,12 @@ $context = Timber::context();
 
 $timber_post = new Timber\Post();
 $context['post'] = $timber_post;
-Timber::render( array( 'page-' . $timber_post->post_name . '.twig', 'page.twig' ), $context );
+
+if(is_front_page()) {
+  $args = array('post_type' => 'portfolio');
+  $context['portfolio'] = new Timber\PostQuery(array('post_type' => 'portfolio'));
+
+  Timber::render(array('front.twig', 'page.twig'), $context);
+} else {
+  Timber::render(array('page-' . $timber_post->post_name . '.twig', 'page.twig'), $context);
+}

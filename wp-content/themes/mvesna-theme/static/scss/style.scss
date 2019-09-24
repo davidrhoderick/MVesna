@@ -16,8 +16,7 @@
  * has " !default" removed from every line.  Yeoman doesn't
  * provide an easy way to do this so you're on your own!
 */
-//@import "variables/bootstrap";
-@import "../bower_components/bootstrap/scss/variables";
+@import "variables/bootstrap";
 
 @import "../bower_components/bootstrap/scss/mixins";
 
@@ -58,4 +57,11 @@
 // NOT WORKING BECAUSE OF CSS VARIABLE HANDLING
 // @import "../bower_components/bootstrap/scss/bootstrap.scss";
 
+@import "components/header";
+
+@import "global/links";
+@import "global/portfolio-gallery-image";
+
 @import "portfolio/portfolio";
+
+@import "pages/front";

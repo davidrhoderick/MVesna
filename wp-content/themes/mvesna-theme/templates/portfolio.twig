@@ -16,7 +16,7 @@
 
     <div class="row">
       {% for index, piece in pieces %}
-        <a class="col-12{% if (index + 1) / 2 % 2 == 0 %} col-md-4{% else %} col-md-8{% endif %} portfolio-gallery-image" href="{{piece.link}}" style="background-image: url({{TimberImage(piece.thumbnail).src}})"></a>
+        <a class="col-12{% if (index + 1) / 2 % 2 == 0 %} col-md-4{% else %} col-md-8{% endif %} portfolio-gallery-image mx-auto" href="{{piece.link}}" style="background-image: url({{TimberImage(piece.thumbnail).src}})"></a>
       {% endfor %}
     </div>
   </div>

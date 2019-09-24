@@ -1,6 +1,14 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">
-    <img src="{{TimberImage(options.logo).src}}" class="d-inline-block align-top w-25" alt="{{site.title}}">
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="{{site.url}}">
+    {% if options.logo %}
+      <img src="{{TimberImage(options.logo).src}}" class="brand-logo" alt="{{site.title}}">
+
+      {% if options.enable_logo_animation and options.animated_text_after_logo %}
+        <span class="animated-text-after-logo" data-scroll-length="{{options.animation_scroll_length}}">{{options.animated_text_after_logo}}</span>
+      {% endif %}
+    {% else %}
+      {{site.title}}
+    {% endif %}
   </a>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navigation" aria-controls="main-navigation" aria-expanded="false" aria-label="Toggle navigation">

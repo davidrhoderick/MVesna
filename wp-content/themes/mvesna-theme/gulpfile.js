@@ -10,7 +10,7 @@ var gulp        = require('gulp'),
 gulp.task('sass', function(){
   return gulp.src('static/scss/style.scss')
     .pipe(sass())
-      .on('error', notify)
+      .on('error', sass.logError)
     .pipe(sassLint({
       files: { ignore: 'static/bower_components/**/*.scss' }
     }))
