@@ -125,7 +125,7 @@ class MVesnaThemeSite extends Timber\Site {
       'has_archive'        => false,
       'hierarchical'       => false,
       'menu_position'      => null,
-      'supports'           => array('title', 'editor', 'thumbnail', 'revisions'),
+      'supports'           => array('title', 'editor', 'excerpt', 'thumbnail', 'revisions'),
       'menu_icon'					 =>'dashicons-format-gallery'
     );
 

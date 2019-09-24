@@ -23,7 +23,30 @@
     transition: border-width 0.3s;
   }
 
-  &:hover:after {
-    border-width: 7px;
+  .piece-description {
+    position: absolute;
+    top: 15px;
+    bottom: 15px;
+    right: 15px;
+    left: 15px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    transition: opacity 0.3s;
+    background: rgba($primary, 0.7);
+
+    h3, p {
+      color: white !important;
+      text-align: center;
+      width: 80%;
+    }
+  }
+
+  &:hover .piece-description {
+    opacity: 1;
   }
 }

@@ -7069,8 +7069,25 @@ a {
     left: 0;
     border: solid #fff 15px;
     transition: border-width 0.3s; }
-  .portfolio-gallery-image:hover:after {
-    border-width: 7px; }
+  .portfolio-gallery-image .piece-description {
+    position: absolute;
+    top: 15px;
+    bottom: 15px;
+    right: 15px;
+    left: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+    background: rgba(255, 100, 101, 0.7); }
+    .portfolio-gallery-image .piece-description h3, .portfolio-gallery-image .piece-description p {
+      color: white !important;
+      text-align: center;
+      width: 80%; }
+  .portfolio-gallery-image:hover .piece-description {
+    opacity: 1; }
 
 #front #hero {
   padding-top: 20%;
