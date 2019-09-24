@@ -4,3 +4,5 @@
 //=require global/replacePopupLinks.js
 
 //=require components/animatedTextAfterLogo.js
+
+//=require portfolio/portfolioPieceLinks.js

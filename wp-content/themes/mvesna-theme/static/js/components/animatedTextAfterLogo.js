@@ -1,4 +1,4 @@
-$(function() {
+$(window).on('load', function() {
   var $animatedText = $('.animated-text-after-logo');
 
   if($animatedText.length > 0) {

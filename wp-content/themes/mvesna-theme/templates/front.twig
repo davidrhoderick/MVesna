@@ -6,7 +6,7 @@
       <div class="container">
         <div class="row">
           <div class="col">
-            <h1 class="font-weight-bolder">{{post.hero_title}}</h1>
+            <h1 class="font-weight-bolder" id="hero-title">{{post.hero_title}}</h1>
 
             <a class="btn btn-lg btn-outline-primary" href="{{post.hero_button_1.url}}"{% if post.hero_button_1.target %} target="{{post.hero_button_1.target}}"{% endif %}>{{post.hero_button_1.title}}</a>
 
@@ -47,7 +47,7 @@
         {% if portfolio %}
           <div class="row">
             {% for index, piece in portfolio %}
-              <a class="col-12{% if (index + 1) / 2 % 2 == 0 %} col-md-4{% else %} col-md-8{% endif %} portfolio-gallery-image mx-auto" href="{{piece.link}}" style="background-image: url({{TimberImage(piece.thumbnail).src('medium')}})"><div class="piece-description"><h3>{{piece.title}}</h3><p>{{piece.post_excerpt}}</p></div></a>
+              {% include 'partial/portfolio-piece-link.twig' %}
             {% endfor %}
           </div>
         {% endif %}

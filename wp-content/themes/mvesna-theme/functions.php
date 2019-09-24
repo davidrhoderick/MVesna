@@ -60,6 +60,7 @@ class MVesnaThemeSite extends Timber\Site {
 
     add_action('wp_enqueue_scripts', array($this, 'add_typekit'));
     add_action('wp_enqueue_scripts', array($this, 'add_googlefonts'));
+    add_action('wp_enqueue_scripts', array($this, 'custom_styles'));
     
     add_action('wp_enqueue_scripts', array($this, 'add_googleanalytics'));
 
@@ -351,6 +352,113 @@ class MVesnaThemeSite extends Timber\Site {
     if($google_fonts) {
       wp_enqueue_style('googlefonts', $google_fonts);
     }
+  }
+
+  public function custom_styles() {
+    wp_enqueue_style('style', get_stylesheet_uri());
+
+    $body_font_family  = get_field('body_font_family', 'options');
+    $body_font_size  = get_field('body_font_size', 'options');
+    $body_font_weight  = get_field('body_font_weight', 'options');
+
+    $bold_font_family = get_field('bold_font_family', 'options');
+    $bold_font_size = get_field('bold_font_size', 'options');
+    $bold_font_weight = get_field('bold_font_weight', 'options');
+
+    $buttons_font_family = get_field('buttons_font_family', 'options');
+    $buttons_font_size = get_field('buttons_font_size', 'options');
+    $buttons_font_weight = get_field('buttons_font_weight', 'options');
+
+    $text_logo_font_family = get_field('text_logo_font_font_family', 'options');
+    $text_logo_font_size = get_field('text_logo_font_font_size', 'options');
+    $text_logo_font_weight = get_field('text_logo_font_font_weight', 'options');
+
+    $hero_title_font_family = get_field('hero_title_font_family', 'options');
+    $hero_title_font_size = get_field('hero_title_font_size', 'options');
+    $hero_title_font_weight = get_field('hero_title_font_weight', 'options');
+
+    $h1_font_family  = get_field('h1_font_family', 'options');
+    $h1_font_size  = get_field('h1_font_size', 'options');
+    $h1_font_weight  = get_field('h1_font_weight', 'options');
+
+    $h2_font_family  = get_field('h2_font_family', 'options');
+    $h2_font_size  = get_field('h2_font_size', 'options');
+    $h2_font_weight  = get_field('h2_font_weight', 'options');
+
+    $h3_font_family  = get_field('h3_font_family', 'options');
+    $h3_font_size  = get_field('h3_font_size', 'options');
+    $h3_font_weight  = get_field('h3_font_weight', 'options');
+
+    $h4_font_family  = get_field('h4_font_family', 'options');
+    $h4_font_size  = get_field('h4_font_size', 'options');
+    $h4_font_weight  = get_field('h4_font_weight', 'options');
+
+    $h5_font_family  = get_field('h5_font_family', 'options');
+    $h5_font_size  = get_field('h5_font_size', 'options');
+    $h5_font_weight  = get_field('h5_font_weight', 'options');
+
+    $custom_fonts = "
+      body {
+        font-family: {$body_font_family};
+        font-size: {$body_font_size}px;
+        font-weight: {$body_font_weight};
+      }
+      
+      bold {
+        font-family: {$bold_font_family};
+        font-size: {$bold_font_size}px;
+        font-weight: {$bold_font_weight};
+      }
+      
+      .btn {
+        font-family: {$buttons_font_family};
+        font-size: {$buttons_font_size}px;
+        font-weight: {$buttons_font_weight};
+      }
+      
+      .animated-text-after-logo {
+        font-family: {$text_logo_font_family};
+        font-size: {$text_logo_font_size}px;
+        font-weight: {$text_logo_font_weight};
+      }
+      
+      #hero-title {
+        font-family: {$hero_title_font_family};
+        font-size: {$hero_title_font_size}px;
+        font-weight: {$hero_title_font_weight};
+      }
+      
+      h1 {
+        font-family: {$h1_font_family};
+        font-size: {$h1_font_size}px;
+        font-weight: {$h1_font_weight};
+      }
+      
+      h2 {
+        font-family: {$h2_font_family};
+        font-size: {$h2_font_size}px;
+        font-weight: {$h2_font_weight};
+      }
+      
+      h3 {
+        font-family: {$h3_font_family};
+        font-size: {$h3_font_size}px;
+        font-weight: {$h3_font_weight};
+      }
+      
+      h4 {
+        font-family: {$h4_font_family};
+        font-size: {$h4_font_size}px;
+        font-weight: {$h4_font_weight};
+      }
+      
+      h5 {
+        font-family: {$h5_font_family};
+        font-size: {$h5_font_size}px;
+        font-weight: {$h5_font_weight};
+      }";
+
+    wp_add_inline_style('style', $custom_fonts);
   }
 
   public function add_googleanalytics() {

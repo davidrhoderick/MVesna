@@ -7026,11 +7026,13 @@ header.header .navbar-brand {
 #content {
   margin-top: 91px; }
 
+#footer a {
+  color: #212529 !important; }
+  #footer a:hover, #footer a:focus, #footer a:active {
+    color: #FF6465 !important; }
+
 a {
-  transition: color 0.3s, border-bottom-color 0.3s;
-  border-bottom: 1px solid transparent; }
-  a:hover, a:focus, a:active {
-    border-bottom-color: #FF6465; }
+  transition: color 0.3s, border-bottom-color 0.3s; }
 
 .portfolio-gallery-image {
   content: "";
@@ -7041,6 +7043,9 @@ a {
   background-repeat: no-repeat;
   padding-top: 33%;
   border: none !important; }
+  @media (max-width: 991.98px) {
+    .portfolio-gallery-image {
+      padding-top: 67%; } }
   .portfolio-gallery-image:after {
     content: "";
     position: absolute;
@@ -7097,3 +7102,13 @@ a {
   background-size: cover;
   background-position: bottom;
   background-repeat: no-repeat; }
+
+.about-image-triptych .about-image-single {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+  background-size: 100%;
+  background-size: cover;
+  background-repeat: no-repeat; }
+
+/*# sourceMappingURL=style.css.map */

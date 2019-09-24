@@ -1,0 +1,7 @@
+<a class="col-12{% if (index + 1) / 2 % 2 == 0 %} col-md-4{% else %} col-md-8{% endif %} portfolio-gallery-image mx-auto" href="{{piece.link}}" style="background-image: url({{TimberImage(piece.thumbnail).src('medium')}})" data-highlight-color="{{piece.highlight_color}}">
+  <div class="piece-description">
+    <h3>{{piece.title}}</h3>
+    
+    <p>{{piece.post_excerpt}}</p>
+  </div>
+</a>
