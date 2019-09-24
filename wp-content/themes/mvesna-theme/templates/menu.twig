@@ -2,7 +2,7 @@
 	<ul class="navbar-nav mx-auto">
 		{% for item in items %}
 			<li class="nav-item{% if item.current %} active{% endif %}">
-				<a {% if item.target %}target="{{item.target}}"{% endif %} class="nav-link" href="{{item.url}}">{{item.title}}</a>
+				<a {% if item.target %}target="{{item.target}}"{% endif %} class="nav-link{% if not loop.last %} mr-2{% endif %}" href="{{item.url}}">{{item.title}}</a>
 
 				{% include "menu.twig" with {'items': item.children} %}
 			</li>

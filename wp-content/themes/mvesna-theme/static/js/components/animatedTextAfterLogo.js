@@ -2,15 +2,26 @@ $(function() {
   var $animatedText = $('.animated-text-after-logo');
 
   if($animatedText.length > 0) {
-    var startLength = $animatedText.width(),
-        animationScrollLength = $animatedText.attr('data-scroll-length'),
+    var startLength = $animatedText.width() + 'px',
+        animationTrigger = $animatedText.attr('data-animation-trigger'),
+        textShown = true,
         animateLogo = function () {
-          var animationProgress = this.scrollY / animationScrollLength;
-    
-          if(animationProgress < 1) {
-            $animatedText.css('width', startLength * (1 - animationProgress));
+          if(this.scrollY > animationTrigger) {
+            if(textShown) {
+              $animatedText.animate({
+                width: '0'
+              }, 300);
+              
+              textShown = false;
+            }
           } else {
-            $animatedText.css('width', 0);
+            if(!textShown) {
+              $animatedText.animate({
+                width: startLength
+              }, 300);
+              
+              textShown = true;
+            }
           }
         };
 

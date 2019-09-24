@@ -1,6 +1,7 @@
 header.header {
   .navbar-brand {
     position: relative;
+    border: none !important;
 
     .brand-logo {
       max-height: 3rem;
@@ -16,6 +17,52 @@ header.header {
       overflow-x: hidden;
       bottom: 0;
       margin-left: -.5rem;
+      width: auto;
     }
   }
+
+  .navbar-right {
+    @include media-breakpoint-down(lg) {
+      flex-direction: row;
+      margin-top: 1rem;
+    }
+
+    .social-media {
+      content: "";
+      height: 24px;
+      width: 24px;
+
+      background: {
+        size: 100%;
+        position: center;
+        repeat: no-repeat;
+      }
+
+      border: none !important;
+
+      &.instagram {
+        background-image: url('static/images/social-media/48x48-Instagram.png');
+      }
+
+      &.behance {
+        background-image: url('static/images/social-media/48x48-Behance.png');
+      }
+
+      &.linkedin {
+        background-image: url('static/images/social-media/48x48-LinkedIn.png');
+      }
+
+      &.pinterest {
+        background-image: url('static/images/social-media/48x48-Pinterest.png');
+      }
+
+      &.facebook {
+        background-image: url('static/images/social-media/48x48-Facebook.png');
+      }
+    }
+  } 
+}
+
+#content {
+  margin-top: 91px;
 }

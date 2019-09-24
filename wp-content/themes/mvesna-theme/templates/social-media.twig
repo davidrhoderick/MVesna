@@ -1,0 +1,9 @@
+{% if options.social_media_networks %}
+	<ul class="navbar-nav navbar-right">
+		{% for network_name, network_link in options.social_media_networks if network_link %}
+			<li class="nav-item{% if not loop.first %} ml-2{% endif %}">
+				<a class="nav-link social-media {{network_name}}" target="_blank" href="{{network_link}}"></a>
+			</li>
+		{% endfor %}
+	</ul>
+{% endif %}
