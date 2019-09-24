@@ -61,6 +61,7 @@ class MVesnaThemeSite extends Timber\Site {
     add_action('wp_enqueue_scripts', array($this, 'add_typekit'));
     add_action('wp_enqueue_scripts', array($this, 'add_googlefonts'));
     add_action('wp_enqueue_scripts', array($this, 'custom_styles'));
+    add_action('wp_enqueue_scripts', array($this, 'social_media_logos'));
     
     add_action('wp_enqueue_scripts', array($this, 'add_googleanalytics'));
 
@@ -459,6 +460,37 @@ class MVesnaThemeSite extends Timber\Site {
       }";
 
     wp_add_inline_style('style', $custom_fonts);
+  }
+
+  public function social_media_logos() {
+    $instagram_logo  = get_field('social_media_logos_instagram_logo', 'options');
+    $behance_logo  = get_field('social_media_logos_behance_logo', 'options');
+    $linkedin_logo  = get_field('social_media_logos_linkedin_logo', 'options');
+    $pinterest_logo  = get_field('social_media_logos_pinterest_logo', 'options');
+    $facebook_logo  = get_field('social_media_logos_facebook_logo', 'options');
+
+    $social_media_logos = "
+      .social-media.instagram {
+        background-image: url({$instagram_logo});
+      }
+      
+      .social-media.behance {
+        background-image: url({$behance_logo});
+      }
+      
+      .social-media.linkedin {
+        background-image: url({$linkedin_logo});
+      }
+      
+      .social-media.pinterest {
+        background-image: url({$pinterest_logo});
+      }
+      
+      .social-media.facebook {
+        background-image: url({$facebook_logo});
+      }";
+
+    wp_add_inline_style('style', $social_media_logos);
   }
 
   public function add_googleanalytics() {

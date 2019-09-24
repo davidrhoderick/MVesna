@@ -33,5 +33,11 @@
         {% endfor %}
       </div>
     </div>
+
+    <div class="row mt-3">
+      <div class="col text-center">
+        <p class="project-navigation"><a {% if post.prev.link %}href="{{post.prev.link}}"{% else %}disabled{% endif %}><span class="prev-arrow"></span> Previous project</a> | <a {% if post.next.link %}href="{{post.next.link}}"{% else %}disabled{% endif %}>Next project <span class="next-arrow"></span></a></p>
+      </div>
+    </div>
   </div>
 {% endblock %}

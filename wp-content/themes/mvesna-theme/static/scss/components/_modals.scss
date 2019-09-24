@@ -2,10 +2,32 @@
   .modal-body {
     position: relative;
 
-    .close {
+    .exit {
+      content: "";
+      display: inline-block;
+      height: 1.5rem;
+      width: 1.5rem;
+      outline: none;
+      border: none;
       position: absolute;
-      top: -5px;
-      right: 5px;
+      top: 8px;
+      right: 8px;
+      opacity: 0.7;
+      transition: opacity 0.3s;
+
+      background: {
+        color: transparent;
+        size: 100%;
+        repeat: no-repeat;
+        position: center;
+        image: url('static/images/symbols/exit.svg');
+      }
+
+      &:hover,
+      &:focus,
+      &:active {
+        opacity: 1;
+      }
     }
   }
 }
