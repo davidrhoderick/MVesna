@@ -1,4 +1,9 @@
 header.header {
+  @include media-breakpoint-up(lg) {
+    width: 75% !important;
+    margin: 0 auto;
+  }
+
   .navbar-brand {
     position: relative;
     border: none !important;
