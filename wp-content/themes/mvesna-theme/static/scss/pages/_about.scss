@@ -2,12 +2,13 @@
   .about-image-single {
     content: "";
     display: block;
-    padding-bottom: 100%;
+    padding-bottom: 150%;
 
     background: {
       size: 100%;
       size: cover;
       repeat: no-repeat;
+      position: center;
     }
   }
 }

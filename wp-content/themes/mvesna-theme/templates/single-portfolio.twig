@@ -10,15 +10,17 @@
 
     <div class="row mt-1">
       <div class="col-12 col-md-8">
-        <h1 class="text-uppercase">{{post.title}}</h1>
+        <h1 class="text-uppercase mt-2" {% include "partial/font-styles.twig" with {font_styles : title_font_styles} %}>{{post.title}}</h1>
 
-        {{post.content}}
+        <div class="mb-3" {% include "partial/font-styles.twig" with {font_styles : description_font_styles} %}>
+          {{post.content}}
+        </div>
       </div>
 
-      <div class="col-12 col-md-4 text-right">
-        <h2 class="h1 text-uppercase">Project Details</h2>
+      <div class="col-12 col-md-4 text-md-right">
+        <h2 class="text-uppercase mt-2" {% include "partial/font-styles.twig" with {font_styles : details_heading_font_styles} %}>Project Details</h2>
 
-        <ul class="list-unstyled">
+        <ul class="list-unstyled mb-1" {% include "partial/font-styles.twig" with {font_styles : details_list_font_styles} %}>
           {% for tag in post.terms('portfolio_tags') %}
             <li>{{tag}}</li>
           {% endfor %}
@@ -29,14 +31,14 @@
     <div class="row">
       <div class="col">
         {% for image in post.gallery %}
-          <img src="{{TimberImage(image).src('large')}}" class="img-fluid w-100">
+          <img src="{{TimberImage(image).src('large')}}" class="img-fluid w-100 pb-2">
         {% endfor %}
       </div>
     </div>
 
     <div class="row mt-3">
       <div class="col text-center">
-        <p class="project-navigation"><a {% if post.prev.link %}href="{{post.prev.link}}"{% else %}disabled{% endif %}><span class="prev-arrow"></span> Previous project</a> | <a {% if post.next.link %}href="{{post.next.link}}"{% else %}disabled{% endif %}>Next project <span class="next-arrow"></span></a></p>
+        <p class="project-navigation" {% include "partial/font-styles.twig" with {font_styles : navigation_font_styles, display_inline : true} %}><a {% include "partial/font-styles.twig" with {font_styles : navigation_font_styles, display_inline : true} %} {% if post.prev.link %}href="{{post.prev.link}}"{% else %}disabled{% endif %}><span {% include "partial/font-styles.twig" with {font_styles : navigation_font_styles, display_inline : true} %} class="prev-arrow"></span> Previous project</a> | <a {% include "partial/font-styles.twig" with {font_styles : navigation_font_styles, display_inline : true} %} {% if post.next.link %}href="{{post.next.link}}"{% else %}disabled{% endif %}>Next project <span {% include "partial/font-styles.twig" with {font_styles : navigation_font_styles, display_inline : true} %} class="next-arrow"></span></a></p>
       </div>
     </div>
   </div>

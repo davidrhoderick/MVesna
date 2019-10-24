@@ -56,13 +56,16 @@ class MVesnaThemeSite extends Timber\Site {
     add_filter('acf_the_content', array($this, 'filter_ptags_on_images'), 30);
 
     add_action('init', array($this, 'disable_emojis'));
+
+    add_action('acf/init', array($this, 'register_font_settings_page'));
+
     add_action('wp_enqueue_scripts', array($this, 'replace_jquery_with_site_js'));
 
     add_action('wp_enqueue_scripts', array($this, 'add_typekit'));
     add_action('wp_enqueue_scripts', array($this, 'add_googlefonts'));
     add_action('wp_enqueue_scripts', array($this, 'custom_styles'));
     add_action('wp_enqueue_scripts', array($this, 'social_media_logos'));
-    
+
     add_action('wp_enqueue_scripts', array($this, 'add_googleanalytics'));
 
     /* If having issues with password protected links, try code below: */
@@ -71,6 +74,23 @@ class MVesnaThemeSite extends Timber\Site {
     acf_add_options_page('Site Options');
 
     parent::__construct();
+  }
+
+  function register_font_settings_page() {
+    if(is_admin()) {
+      if(!function_exists('acf_add_options_page')) {
+        return;
+      }
+  
+      $option_page = acf_add_options_page(array(
+        'page_title'    => __('Font Settings'),
+        'menu_title'    => __('Font Settings'),
+        'menu_slug'     => 'font-settings',
+        'capability'    => 'edit_posts',
+        'redirect'      => false,
+        'icon_url'      => 'dashicons-editor-textcolor'
+      ));
+    }
   }
 
   function amend_redirect_hosts($allowed_hosts, $this_host) {
@@ -210,7 +230,7 @@ class MVesnaThemeSite extends Timber\Site {
    * @param string $context context['this'] Being the Twig's {{ this }}.
    */
   public function add_to_context($context) {
-    $context['options'] = get_fields('options');
+    $context['options'] = get_fields('option');
     $context['menu'] = new Timber\Menu();
     $context['site'] = $this;
 
@@ -374,9 +394,9 @@ class MVesnaThemeSite extends Timber\Site {
     $text_logo_font_size = get_field('text_logo_font_font_size', 'options');
     $text_logo_font_weight = get_field('text_logo_font_font_weight', 'options');
 
-    $hero_title_font_family = get_field('hero_title_font_family', 'options');
-    $hero_title_font_size = get_field('hero_title_font_size', 'options');
-    $hero_title_font_weight = get_field('hero_title_font_weight', 'options');
+    // $hero_title_font_family = get_field('hero_title_font_family', 'options');
+    // $hero_title_font_size = get_field('hero_title_font_size', 'options');
+    // $hero_title_font_weight = get_field('hero_title_font_weight', 'options');
 
     $h1_font_family  = get_field('h1_font_family', 'options');
     $h1_font_size  = get_field('h1_font_size', 'options');
@@ -423,11 +443,11 @@ class MVesnaThemeSite extends Timber\Site {
         font-weight: {$text_logo_font_weight};
       }
       
-      #hero-title {
-        font-family: {$hero_title_font_family};
-        font-size: {$hero_title_font_size}px;
-        font-weight: {$hero_title_font_weight};
-      }
+      //#hero-title {
+      //  font-family: {hero_title_font_family};
+      //  font-size: {hero_title_font_size}px;
+      //  font-weight: {hero_title_font_weight};
+      //}
       
       h1 {
         font-family: {$h1_font_family};

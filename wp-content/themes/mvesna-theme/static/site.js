@@ -17613,6 +17613,27 @@ return jQuery;
 
 
 $(function() {
+  var $hero = $('#hero'),
+      makeHeroFullWindow = function() {
+        var windowHeight = $(window).innerHeight(),
+            windowWidth = $(window).innerWidth(),
+            $content = $hero.find('.container'),
+            contentHeight = $content.outerHeight();
+
+        $hero.css({
+          height: windowHeight,
+          width: windowWidth
+        });
+
+        $content.css('top', (windowHeight - contentHeight) / 2);
+      };
+
+  if($hero.length > 0) {
+    $(window).on('load resize', makeHeroFullWindow);
+  }
+});
+
+$(function() {
   // $(document).load(function() {
     var $popupAnchors = $('a[href*="' + window.location.hostname + '"][href*="/popup/"], a[href*="/popup/"]');
 
@@ -17627,6 +17648,19 @@ $(function() {
   // });
 });
 
+$(function() {
+  var $navbar = $('.navbar'),
+      animateLogo = function () {
+        if(this.scrollY > 10 && !$navbar.hasClass('show-background')) {
+          $navbar.addClass('show-background');
+        } else if(this.scrollY < 10 && $navbar.hasClass('show-background')) {
+          $navbar.removeClass('show-background');
+        }
+      };
+
+  window.addEventListener('scroll', animateLogo);
+  $(window).on('load resize', animateLogo);
+});
 $(window).on('load', function() {
   var $animatedText = $('.animated-text-after-logo');
 

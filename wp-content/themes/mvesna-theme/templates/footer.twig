@@ -2,14 +2,14 @@
   {% if options.footer_text %}
     <div class="row mt-2">
       <div class="col">
-        <p>{{options.footer_text}}</p>
+        <p {% include "partial/font-styles.twig" with {font_styles : options.footer_font_styles, display_inline : true} %}>{{options.footer_text}}</p>
       </div>
     </div>
   {% endif %}
 
   {% if options.footer_segments %}
     <div class="row">
-      <div class="col">
+      <div class="col" {% include "partial/font-styles.twig" with {font_styles : options.footer_font_styles, display_inline : true} %}>
         {% for segment_key, segment in options.footer_segments %}
           {% if segment_key == 'email_address' %}
             <a target="_blank" href="mailto:{{segment}}">{{segment}}</a>

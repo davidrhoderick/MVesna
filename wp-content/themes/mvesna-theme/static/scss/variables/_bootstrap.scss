@@ -205,10 +205,10 @@ $grid-breakpoints: (
 // Define the maximum width of `.container` for different screen sizes.
 
 $container-max-widths: (
-  sm: 540px,
-  md: 720px,
-  lg: 960px,
-  xl: 1140px
+  sm: 75%,
+  md: 75%,
+  lg: 75%,
+  xl: 75%
 );
 
 @include _assert-ascending($container-max-widths, "$container-max-widths");
@@ -219,7 +219,7 @@ $container-max-widths: (
 // Set the number of columns and specify the width of the gutters.
 
 $grid-columns:                12;
-$grid-gutter-width:           30px;
+$grid-gutter-width:           0;//30px;
 
 
 // Components
@@ -686,7 +686,7 @@ $zindex-tooltip:                    1070;
 
 // Navs
 
-$nav-link-padding-y:                .5rem;
+$nav-link-padding-y:                0;//.5rem;
 $nav-link-padding-x:                1rem;
 $nav-link-disabled-color:           $gray-600;
 
@@ -717,11 +717,11 @@ $navbar-brand-font-size:            $font-size-lg;
 // Compute the navbar-brand padding-y so the navbar-brand will have the same height as navbar-text and nav-link
 $nav-link-height:                   $font-size-base * $line-height-base + $nav-link-padding-y * 2;
 $navbar-brand-height:               $navbar-brand-font-size * $line-height-base;
-$navbar-brand-padding-y:            ($nav-link-height - $navbar-brand-height) / 2;
+$navbar-brand-padding-y:            0;//($nav-link-height - $navbar-brand-height) / 2;
 
-$navbar-toggler-padding-y:          .25rem;
+$navbar-toggler-padding-y:          0rem;
 $navbar-toggler-padding-x:          .75rem;
-$navbar-toggler-font-size:          $font-size-lg;
+$navbar-toggler-font-size:          1.15rem;
 $navbar-toggler-border-radius:      $btn-border-radius;
 
 $navbar-dark-color:                 rgba($white, .5);
@@ -736,7 +736,7 @@ $navbar-light-hover-color:          rgba($primary, 0.7);//rgba($black, .7);
 $navbar-light-active-color:         rgba($black, .9);
 $navbar-light-disabled-color:       rgba($black, .3);
 $navbar-light-toggler-icon-bg:      str-replace(url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='#{$navbar-light-color}' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"), "#", "%23");
-$navbar-light-toggler-border-color: rgba($black, .1);
+$navbar-light-toggler-border-color: transparent;//rgba($black, .1);
 
 $navbar-light-brand-color:                $navbar-light-active-color;
 $navbar-light-brand-hover-color:          $navbar-light-active-color;

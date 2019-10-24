@@ -1,0 +1,25 @@
+{% if font_styles %}
+  style="
+    {% if font_styles.font_size and font_styles.font_size|length > 0 %}
+      font-size: {{font_styles.font_size}};
+    {% endif %}
+    {% if font_styles.text_alignment and font_styles.text_alignment|length > 0 %}
+      text-align: {{font_styles.text_alignment}};
+    {% endif %}
+    {% if not display_inline %}
+      display: block;
+    {% endif %}
+    {% if font_styles.line_height and font_styles.line_height|length > 0 %}
+      line-height: {{font_styles.line_height}};
+    {% endif %}
+    {% if font_styles.color and font_styles.color|length > 0 %}
+      color: {{font_styles.color}};
+    {% endif %}
+    {% if font_styles.italic %}
+      font-style: italic;
+    {% endif %}
+    {% if font_styles.font_weight[0]|length > 0 and font_styles.font_weight[0] != "normal" %}
+      font-weight: {{font_styles.font_weight[0]}};
+    {% endif %}
+  "
+{% endif %}

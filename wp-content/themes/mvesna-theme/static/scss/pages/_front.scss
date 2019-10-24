@@ -1,13 +1,25 @@
 #front {
   #hero {
-    padding-top: 20%;
-    padding-bottom: 10%;
+    // padding-top: 20%;
+    // padding-bottom: 10%;
 
     background: {
       size: 100%;
       size: cover;
-      position: bottom;
+      position: right bottom;
       repeat: no-repeat;
+    }
+    position: relative;
+    max-width: 100%;
+
+    .container {
+      position: absolute;
+      max-width: 100%;
+
+      @include media-breakpoint-up(sm) {
+        left: 12.5%;
+        max-width: 75%;
+      }
     }
   }
 }

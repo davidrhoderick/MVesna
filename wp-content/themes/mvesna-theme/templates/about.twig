@@ -3,21 +3,21 @@
 {% block content %}
 	<div class="container pt-3">
 		<div class="row">
-			<div class="col text-center">
-				<h1>{{post.title}}</h1>
+			<div class="col">
+				<h1 {% include "partial/font-styles.twig" with {font_styles : post.meta('title_font_styles')} %}>{{post.title}}</h1>
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="col-12 col-md-9 mx-auto text-center">
-				{{post.content}}
+			<div class="col-12" {% include "partial/font-styles.twig" with {font_styles : post.meta('content')} %}>
+				{{post.content_text|wpautop}}
 			</div>
 		</div>
 
 		{% if post.image_triptych %}
 			<div class="row py-4 mt-3 border-top border-primary about-image-triptych">
 				{% for image in post.image_triptych %}
-					<div class="col-12 col-md-4 p-0">
+					<div class="col-12 col-md-4">
 						<div class="about-image-single" style="background-image: url({{Image(image).src('medium')}})"></div>
 					</div>
 				{% endfor %}

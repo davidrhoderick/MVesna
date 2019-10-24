@@ -4,7 +4,9 @@
 			<li class="nav-item{% if item.current %} active{% endif %}">
 				<a {% if item.target %}target="{{item.target}}"{% endif %} class="nav-link{% if not loop.last %} mr-2{% endif %}" href="{{item.url}}">{{item.title}}</a>
 
-				{% include "menu.twig" with {'items': item.children} %}
+				{% if item.children %}
+					{% include "menu.twig" with {'items': item.children} %}
+				{% endif %}
 			</li>
 		{% endfor %}
 	</ul>

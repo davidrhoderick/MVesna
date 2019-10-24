@@ -5,9 +5,15 @@
         <div class="modal-body">
           <button type="button" class="exit" data-dismiss="modal" aria-label="Close"></button>
 
-          <h3 id="{{popup.path|trim('/')|replace('/', '-')}}-label">{{popup.title}}</h3>
+          <h3 class="mt-2" id="{{popup.path|trim('/')|replace('/', '-')}}-label" {% include "partial/font-styles.twig" with {font_styles : popup.meta('title_font_styles')} %}>{{popup.title}}</h3>
           
-          {{popup.content}}
+          <div class="mb-2" {% include "partial/font-styles.twig" with {font_styles : popup.meta('content')} %}>
+            {{popup.content_text}}
+          </div>
+
+          <div class="mb-n2" {% include "partial/font-styles.twig" with {font_styles : popup.meta('shortcode')} %}>
+            {{ function('do_shortcode', popup.shortcode_text) }}
+          </div>
         </div>
       </div>
     </div>

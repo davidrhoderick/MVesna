@@ -1,7 +1,40 @@
 header.header {
-  @include media-breakpoint-up(lg) {
-    width: 75% !important;
-    margin: 0 auto;
+  &:after {
+    float: none;
+    clear: both;
+    content: "";
+    display: block;
+    // width: 75%;
+    height: 1px;
+    background: $primary;
+    position: fixed;
+    top: 70px;
+    left: 12.5%;
+    right: 12.5%;
+    z-index: 1030;
+
+    @include media-breakpoint-down(xs) {
+      left: 15px;
+      right: 15px;
+    }
+  }
+
+  .navbar {
+    padding: 1.25rem 12.5% !important;
+    align-items: center;
+    transition: background-color 0.3s;
+
+    &.show-background {
+      background: white;
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    @include media-breakpoint-down(xs) {
+      padding: {
+        left: 15px !important;
+        right: 15px !important;
+      }
+    }
   }
 
   .navbar-brand {
@@ -9,8 +42,9 @@ header.header {
     border: none !important;
 
     .brand-logo {
-      max-height: 3rem;
+      max-height: 1.33rem;
       display: inline-block;
+      margin-top: -3px;
     }
 
     .animated-text-after-logo {
@@ -21,19 +55,50 @@ header.header {
       display: inline-block;
       overflow-x: hidden;
       bottom: 0;
-      margin-left: -.5rem;
       width: auto;
+      line-height: 1;
+      vertical-align: baseline;
+    }
+
+    ::-webkit-scrollbar {
+      width: 0px;
     }
   }
 
-  .navbar-right {
-    @include media-breakpoint-down(lg) {
-      flex-direction: row;
-      margin-top: 1rem;
+  .collapse, .nav-item {
+    @include media-breakpoint-up(lg) {
+      line-height: 1;
+
+      &, .nav-link {
+        display: flex;
+        align-items: flex-end;
+      }
     }
-  } 
+  }
+
+  @include media-breakpoint-down(md) {
+    .navbar-nav {
+      margin-top: 1rem;
+      padding-top: 0.5rem;
+
+      .nav-item {
+        line-height: 1.5;
+      }
+
+      &.navbar-right {
+        flex-direction: row;
+        
+        margin-top: .5rem;
+        padding-top: 0;
+
+        .nav-item {
+          line-height: 1;
+        }
+      }
+    }
+  }
 }
 
-#content {
-  margin-top: 91px;
+.content-margin {
+  margin-top: 70px;
 }
