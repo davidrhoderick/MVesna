@@ -6,7 +6,7 @@
 		
 		<div class="row pt-3">
 			<div class="col my-2">
-				<h1 {% include "partial/font-styles.twig" with {font_styles : post.meta('title_font_styles')} %}>{{post.title}}</h1>
+				<h1 {% include "partial/font-styles.twig" with {font_styles : post.meta('title_font_styles')} %}>{{post.title_above_content}}</h1>
 			</div>
 		</div>
 
@@ -30,17 +30,27 @@
 			{% for row in post.meta('services_categories')|batch(3) %}
 				<div class="row mt-4 mx-auto">
 					{% for category in row %}
-						<div class="col-12 col-lg-4">
+						<div class="col-12 col-lg-4 col-sm-6">
 							<h3 {% include "partial/font-styles.twig" with {font_styles : post.meta('services_category_title_font_styles')} %}>{{category.title}}</h3>
+						</div>
+
+						<div class="col-12 col-sm-6 border-primary border-left mb-4 d-block d-lg-none">
+							{% if category.items %}
+								<ul class="list-unstyled mb-0">
+									{% for item in category.items %}
+										<li class="pb-1 pl-2">{{item.item}}</li>
+									{% endfor %}
+								</ul>
+							{% endif %}
 						</div>
 					{% endfor %}
 				</div>
 
-				<div class="row mb-4">
+				<div class="row mb-4 d-none d-lg-flex">
 					{% for category in row %}
 						<div class="col-12 col-lg-4 mx-auto border-primary border-left">
 							{% if category.items %}
-								<ul class="list-unstyled">
+								<ul class="list-unstyled mb-0">
 									{% for item in category.items %}
 										<li class="pb-1 pl-2">{{item.item}}</li>
 									{% endfor %}
