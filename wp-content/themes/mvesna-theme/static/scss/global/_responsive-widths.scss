@@ -1,0 +1,9 @@
+@each $breakpoint, $screenWidth in $grid-breakpoints {
+  @each $widthName, $widthValue in $sizes {
+    @media (min-width: #{$screenWidth}) {
+      .w-#{$breakpoint}-#{$widthName} {
+        width: $widthValue !important;
+      }
+    }
+  }
+}

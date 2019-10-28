@@ -1,3 +1,5 @@
+var draw_complete = 'DRAW_COMPLETE';
+
 /*!
  * jQuery JavaScript Library v3.4.1
  * https://jquery.com/
@@ -17613,6 +17615,44 @@ return jQuery;
 
 
 $(function() {
+  // $(document).load(function() {
+    var $popupAnchors = $('a[href*="' + window.location.hostname + '"][href*="/popup/"], a[href*="/popup/"]');
+
+    $popupAnchors.each(function() {
+      var $this = $(this),
+          popupTarget = this.pathname.replace(/^\/+|\/+$/g, '').replace('/', '-');
+
+      $this.attr('data-toggle', 'modal');
+      $this.attr('data-target', '#' + popupTarget);
+      $this.attr('href', '#');
+    });
+  // });
+});
+$(function() {
+  var $fadeInCover = $('.fade-in-cover'),
+      $links = $('a:not([target="_blank"]):not([href="#"])');
+
+  $(window).on(draw_complete, function() {
+    $fadeInCover.animate({
+      opacity: 0
+    }, 300, function() {
+      $fadeInCover.hide();
+    });
+  });
+
+  $links.on('click', function(event) {
+    event.preventDefault;
+    var href = $(this).attr('href');
+    
+    $fadeInCover.show().animate({
+      opacity: 1
+    }, 300, function() {
+      window.location.href = href;
+    });
+  });
+});
+
+$(function() {
   var $hero = $('#hero'),
       makeHeroFullWindow = function() {
         var windowHeight = $(window).innerHeight(),
@@ -17626,26 +17666,17 @@ $(function() {
         });
 
         $content.css('top', (windowHeight - contentHeight) / 2);
+
+        $(window).trigger(draw_complete);
       };
 
   if($hero.length > 0) {
     $(window).on('load resize', makeHeroFullWindow);
-  }
-});
-
-$(function() {
-  // $(document).load(function() {
-    var $popupAnchors = $('a[href*="' + window.location.hostname + '"][href*="/popup/"], a[href*="/popup/"]');
-
-    $popupAnchors.each(function() {
-      var $this = $(this),
-          popupTarget = this.pathname.replace(/^\/+|\/+$/g, '').replace('/', '-');
-
-      $this.attr('data-toggle', 'modal');
-      $this.attr('data-target', '#' + popupTarget);
-      $this.attr('href', '#');
+  } else {
+    $(window).on('load', function() {
+      $(window).trigger(draw_complete);
     });
-  // });
+  }
 });
 
 $(function() {

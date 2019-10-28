@@ -1,9 +1,11 @@
 {% extends "base.twig" %}
 
 {% block content %}
-	<div class="container pt-3">
-		<div class="row">
-			<div class="col">
+	<div class="container">
+		<div id="about-hero" style="background-image: url({{post.thumbnail.src}});"></div>
+		
+		<div class="row pt-3">
+			<div class="col my-2">
 				<h1 {% include "partial/font-styles.twig" with {font_styles : post.meta('title_font_styles')} %}>{{post.title}}</h1>
 			</div>
 		</div>
@@ -14,7 +16,43 @@
 			</div>
 		</div>
 
-		{% if post.image_triptych %}
+		<div class="row border-top border-primary mt-4 pt-4">
+			<div class="col">
+				<h2 class="mb-3" {% include "partial/font-styles.twig" with {font_styles : post.meta('services_title_font_styles')} %}>{{post.services_title}}</h2>
+
+				<div {% include "partial/font-styles.twig" with {font_styles : post.meta('services_content_font_styles')} %}>
+					{{post.services_content|wpautop}}
+				</div>
+			</div>
+		</div>
+
+		{% if post.meta('services_categories') %}
+			{% for row in post.meta('services_categories')|batch(3) %}
+				<div class="row mt-4 mx-auto">
+					{% for category in row %}
+						<div class="col-12 col-lg-4">
+							<h3 {% include "partial/font-styles.twig" with {font_styles : post.meta('services_category_title_font_styles')} %}>{{category.title}}</h3>
+						</div>
+					{% endfor %}
+				</div>
+
+				<div class="row mb-4">
+					{% for category in row %}
+						<div class="col-12 col-lg-4 mx-auto border-primary border-left">
+							{% if category.items %}
+								<ul class="list-unstyled">
+									{% for item in category.items %}
+										<li class="pb-1 pl-2">{{item.item}}</li>
+									{% endfor %}
+								</ul>
+							{% endif %}
+						</div>
+					{% endfor %}
+				</div>
+			{% endfor %}
+		{% endif %}
+
+		{# {% if post.image_triptych %}
 			<div class="row py-4 mt-3 border-top border-primary about-image-triptych">
 				{% for image in post.image_triptych %}
 					<div class="col-12 col-md-4">
@@ -22,6 +60,6 @@
 					</div>
 				{% endfor %}
 			</div>
-		{% endif %}
+		{% endif %} #}
 	</div>
 {% endblock %}

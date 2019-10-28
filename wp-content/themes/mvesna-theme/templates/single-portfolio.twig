@@ -10,7 +10,7 @@
 
     <div class="row mt-1">
       <div class="col-12 col-md-8">
-        <h1 class="text-uppercase mt-2" {% include "partial/font-styles.twig" with {font_styles : title_font_styles} %}>{{post.title}}</h1>
+        <h1 class="text-uppercase mt-3" {% include "partial/font-styles.twig" with {font_styles : title_font_styles} %}>{{post.title}}</h1>
 
         <div class="mb-3" {% include "partial/font-styles.twig" with {font_styles : description_font_styles} %}>
           {{post.content}}
@@ -18,9 +18,9 @@
       </div>
 
       <div class="col-12 col-md-4 text-md-right">
-        <h2 class="text-uppercase mt-2" {% include "partial/font-styles.twig" with {font_styles : details_heading_font_styles} %}>Project Details</h2>
+        <h2 class="text-uppercase mt-3" {% include "partial/font-styles.twig" with {font_styles : details_heading_font_styles} %}>Project Details</h2>
 
-        <ul class="list-unstyled mb-1" {% include "partial/font-styles.twig" with {font_styles : details_list_font_styles} %}>
+        <ul class="list-unstyled mb-4" {% include "partial/font-styles.twig" with {font_styles : details_list_font_styles} %}>
           {% for tag in post.terms('portfolio_tags') %}
             <li>{{tag}}</li>
           {% endfor %}

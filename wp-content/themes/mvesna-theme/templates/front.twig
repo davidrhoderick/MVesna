@@ -20,16 +20,16 @@
       <div class="container">
         <div class="row mt-3">
           <div class="col-12">
-            <h2 {% include "partial/font-styles.twig" with {font_styles : post.meta('about_title')} %}>{{post.about_title_text}}</h2>
+            <h2 class="mt-3 mb-4" {% include "partial/font-styles.twig" with {font_styles : post.meta('about_title')} %}>{{post.about_title_text}}</h2>
 
-            <div {% include "partial/font-styles.twig" with {font_styles : post.meta('about_content')} %}>
-            {{post.about_content_text|wpautop}}
+            <div class="w-100 w-sm-75 mx-auto" {% include "partial/font-styles.twig" with {font_styles : post.meta('about_content')} %}>
+              {{post.about_content_text|wpautop}}
             </div>
           </div>
         </div>
 
         <div class="row mt-2">
-          <div class="col">
+          <div class="col my-2">
             <a {% include "partial/font-styles.twig" with {font_styles : post.meta('about_link')} %} href="{{post.about_link_link.url}}"{% if post.about_link_link.target %} target="{{post.about_link_link.target}}"{% endif %}>{{post.about_link_link.title}}</a></p>
           </div>
         </div>
@@ -40,9 +40,9 @@
       <div class="container">
         <div class="border-top border-primary row mt-2 pt-3 mb-3">
           <div class="col-12">
-            <h2 {% include "partial/font-styles.twig" with {font_styles : post.meta('portfolio_title')} %}>{{post.portfolio_title_text}}</h2>
+            <h2 class="mt-3 mb-4" {% include "partial/font-styles.twig" with {font_styles : post.meta('portfolio_title')} %}>{{post.portfolio_title_text}}</h2>
         
-            <div {% include "partial/font-styles.twig" with {font_styles : post.meta('portfolio_content')} %}>{{post.portfolio_content_text|wpautop}}
+            <div class="w-100 w-sm-75 mx-auto" {% include "partial/font-styles.twig" with {font_styles : post.meta('portfolio_content')} %}>{{post.portfolio_content_text|wpautop}}
             </div>
           </div>
         </div>
@@ -56,7 +56,7 @@
         {% endif %}
 
         <div class="row mt-3">
-          <div class="col">
+          <div class="col my-2">
             <a {% include "partial/font-styles.twig" with {font_styles : post.meta('portfolio_link')} %} href="{{post.portfolio_link_link.url}}"{% if post.portfolio_link_link.target %} target="{{post.portfolio_link_link.target}}"{% endif %}>{{post.portfolio_link_link.title}}</a>
           </div>
         </div>

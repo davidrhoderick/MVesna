@@ -1,0 +1,1 @@
+var draw_complete = 'DRAW_COMPLETE';

@@ -3,14 +3,16 @@
 {% block content %}
   <div class="container">
     <div class="row pt-3">
-      <div class="col">
+      <div class="col my-2">
         <h1 {% include "partial/font-styles.twig" with {font_styles : post.meta('title_font_styles')} %}>{{post.title}}</h1>
       </div>
     </div>
 
     <div class="row pb-3 mb-n1">
       <div class="col" {% include "partial/font-styles.twig" with {font_styles : post.meta('content')} %}>
-        {{post.content_text|wpautop}}
+        <div class="mx-auto w-100 w-sm-75">
+          {{post.content_text|wpautop}}
+        </div>
       </div>
     </div>
 

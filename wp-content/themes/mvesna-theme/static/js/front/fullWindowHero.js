@@ -12,9 +12,15 @@ $(function() {
         });
 
         $content.css('top', (windowHeight - contentHeight) / 2);
+
+        $(window).trigger(draw_complete);
       };
 
   if($hero.length > 0) {
     $(window).on('load resize', makeHeroFullWindow);
+  } else {
+    $(window).on('load', function() {
+      $(window).trigger(draw_complete);
+    });
   }
 });

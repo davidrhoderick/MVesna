@@ -376,7 +376,7 @@ class MVesnaThemeSite extends Timber\Site {
   }
 
   public function custom_styles() {
-    wp_enqueue_style('style', get_stylesheet_uri());
+    wp_enqueue_style('style', get_stylesheet_uri(), false, filemtime(get_stylesheet_directory() . '/style.css'));
 
     $body_font_family  = get_field('body_font_family', 'options');
     $body_font_size  = get_field('body_font_size', 'options');

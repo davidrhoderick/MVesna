@@ -2,7 +2,7 @@
 	<ul class="navbar-nav mx-auto">
 		{% for item in items %}
 			<li class="nav-item{% if item.current %} active{% endif %}">
-				<a {% if item.target %}target="{{item.target}}"{% endif %} class="nav-link{% if not loop.last %} mr-2{% endif %}" href="{{item.url}}">{{item.title}}</a>
+				<a {% if item.target %}target="{{item.target}}"{% endif %} class="nav-link{% if not loop.last %} mr-2{% endif %}" href="{{item.url}}" {% include "partial/font-styles.twig" with {font_styles : options.navigation_item_font_styles, display_inline : true} %}>{{item.title}}</a>
 
 				{% if item.children %}
 					{% include "menu.twig" with {'items': item.children} %}

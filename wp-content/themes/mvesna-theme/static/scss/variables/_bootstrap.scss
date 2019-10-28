@@ -162,7 +162,7 @@ $sizes: map-merge(
 // Settings for the `<body>` element.
 
 $body-bg:                   $white;
-$body-color:                $gray-900;
+$body-color:                #73777a;
 
 
 // Links
@@ -193,6 +193,7 @@ $grid-breakpoints: (
   sm: 576px,
   md: 768px,
   lg: 992px,
+  footer: 1027px,
   xl: 1200px
 );
 

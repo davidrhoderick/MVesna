@@ -4,7 +4,6 @@ header.header {
     clear: both;
     content: "";
     display: block;
-    // width: 75%;
     height: 1px;
     background: $primary;
     position: fixed;
@@ -34,6 +33,11 @@ header.header {
         left: 15px !important;
         right: 15px !important;
       }
+    }
+
+    @include media-breakpoint-down(md) {
+      background: white;
+      background: rgba(255, 255, 255, 0.8);
     }
   }
 
@@ -78,15 +82,22 @@ header.header {
 
   @include media-breakpoint-down(md) {
     .navbar-nav {
-      margin-top: 1rem;
+      margin-top: 1.5rem;
       padding-top: 0.5rem;
 
       .nav-item {
         line-height: 1.5;
+        margin: .5rem 0;
+
+        .nav-link {
+          text-align: center;
+          margin: 0 !important;
+        }
       }
 
       &.navbar-right {
         flex-direction: row;
+        justify-content: center;
         
         margin-top: .5rem;
         padding-top: 0;

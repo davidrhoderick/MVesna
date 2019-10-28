@@ -10,6 +10,10 @@
   }
 
   padding-top: 33%;
+
+  @include media-breakpoint-down(sm) {
+    padding-top: 50%;
+  }
   
   border: none !important;
 
@@ -78,8 +82,7 @@
     }
   }
 
-  &:nth-child(1),
-  &:nth-child(2) {
+  &:nth-child(1) {
     .piece-description {
       top: 0;
     }
@@ -89,8 +92,7 @@
     }
   }
 
-  &:nth-last-child(1),
-  &:nth-last-child(2) {
+  &:nth-last-child(1) {
     .piece-description {
       bottom: 0;
     }

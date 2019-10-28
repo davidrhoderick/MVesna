@@ -1,0 +1,10 @@
+.fade-in-cover {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: $body-bg;
+
+  z-index: 1040;
+}

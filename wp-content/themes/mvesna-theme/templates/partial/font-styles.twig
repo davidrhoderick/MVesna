@@ -1,5 +1,8 @@
 {% if font_styles %}
   style="
+    {% if font_styles.font_family and font_styles.font_family|length > 0 %}
+      font-family: {{font_styles.font_family}};
+    {% endif %}
     {% if font_styles.font_size and font_styles.font_size|length > 0 %}
       font-size: {{font_styles.font_size}};
     {% endif %}
@@ -20,6 +23,8 @@
     {% endif %}
     {% if font_styles.font_weight[0]|length > 0 and font_styles.font_weight[0] != "normal" %}
       font-weight: {{font_styles.font_weight[0]}};
+    {% elseif font_styles.font_weight|length > 0 and font_styles.font_weight != "normal" %}
+      font-weight: {{font_styles.font_weight}};
     {% endif %}
   "
 {% endif %}
