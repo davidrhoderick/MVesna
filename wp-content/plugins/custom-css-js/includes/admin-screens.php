@@ -61,7 +61,6 @@ class CustomCSSandJS_Admin {
             'save_post'                 => 'options_save_meta_box_data',
             'trashed_post'              => 'trash_post',
             'untrashed_post'            => 'trash_post',
-            // 'wp_loaded'                 => 'compatibility_shortcoder',
             'wp_ajax_ccj_active_code'   => 'wp_ajax_ccj_active_code',
             'wp_ajax_ccj_permalink'     => 'wp_ajax_ccj_permalink',
             'post_submitbox_start'      => 'post_submitbox_start',
@@ -622,10 +621,10 @@ End of comment */ ', 'custom-css-js') . PHP_EOL . PHP_EOL;
                     $post->post_content = __('<!-- Add HTML code to the header or the footer.
 
 For example, you can use the following code for loading the jQuery library from Google CDN:
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 or the following one for loading the Bootstrap library from MaxCDN:
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 -- End of the comment --> ', 'custom-css-js') . PHP_EOL . PHP_EOL;
                 }
@@ -1153,20 +1152,6 @@ End of comment */ ', 'custom-css-js') . PHP_EOL . PHP_EOL;
         $this->build_search_tree( );
     }
 
-
-    /**
-     * Compatibility with `shortcoder` plugin
-     *
-    function compatibility_shortcoder() {
-        ob_start( array( $this, 'compatibility_shortcoder_html' ) );
-    }
-    function compatibility_shortcoder_html( $html ) {
-        if ( strpos( $html, 'QTags.addButton' ) === false ) return $html;
-        if ( strpos( $html, 'codemirror/codemirror-compressed.js' ) === false ) return $html;
-
-        return str_replace( 'QTags.addButton', '// QTags.addButton', $html );
-    }
-     */
 
     /**
      * Render the checkboxes, radios, selects and inputs
