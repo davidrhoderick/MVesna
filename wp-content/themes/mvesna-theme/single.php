@@ -16,11 +16,20 @@ $context['post'] = $timber_post;
 if(post_password_required($timber_post->ID)) {
 	Timber::render('single-password.twig', $context);
 } else if($timber_post->post_type == 'portfolio') {
-	$context['title_font_styles'] = get_field('portfolio_font_styles_project_title_font_styles', 'options');
-	$context['description_font_styles'] = get_field('portfolio_project_description_font_styles', 'options');
-	$context['details_heading_font_styles'] = get_field('portfolio_project_details_heading_font_styles', 'options');
-	$context['details_list_font_styles'] = get_field('portfolio_project_details_list_font_styles', 'options');
+	$context['title_font_styles'] = get_field('portfolio_title_font_styles', 'options');
+	$context['description_font_styles'] = get_field('portfolio_description_font_styles', 'options');
+	$context['details_heading_font_styles'] = get_field('portfolio_details_heading_font_styles', 'options');
+	$context['details_list_font_styles'] = get_field('portfolio_details_list_font_styles', 'options');
 	$context['navigation_font_styles'] = get_field('portfolio_navigation_font_styles', 'options');
+
+	$context['first_portfolio'] = Timber::get_post(array(
+			'post_type' => 'portfolio',
+			'order' => 'DESC'
+	));
+	$context['last_portfolio'] = Timber::get_post(array(
+		'post_type' => 'portfolio',
+		'order' => 'ASC'
+	));
 
 	Timber::render('single-portfolio.twig', $context);
 } else {

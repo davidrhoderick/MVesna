@@ -12,19 +12,19 @@
       <div class="col" {% include "partial/font-styles.twig" with {font_styles : options.footer_font_styles, display_inline : true} %}>
         {% for segment_key, segment in options.footer_segments %}
           {% if segment_key == 'email_address' %}
-            <a class="d-block d-footer-inline" target="_blank" href="mailto:{{segment}}">{{segment}}</a>
+            <a class="d-block d-footer-inline mb-1 mb-footer-0" target="_blank" href="mailto:{{segment}}">{{segment}}</a>
           {% elseif segment_key == 'phone_number' %}
-            <a class="d-block d-footer-inline" target="_blank" href="tel:{{segment|preg_replace('/[^0-9]/', '')}}">{{segment}}</a>
+            <a class="d-block d-footer-inline mb-1 mb-footer-0" target="_blank" href="tel:{{segment|preg_replace('/[^0-9]/', '')}}">{{segment}}</a>
           {% elseif segment_key == 'client_form' %}
-            <a class="d-block d-footer-inline" href="{{segment}}">Client form</a>
+            <a class="d-block d-footer-inline mb-1 mb-footer-0" href="{{segment}}">Client form</a>
           {% elseif segment_key == 'copyright_owner' %}
-            <span class="d-block d-footer-inline">&copy; {{"now"|date('Y')}} {{segment}}</span>
+            <span class="d-block d-footer-inline mb-1 mb-footer-0">&copy; {{"now"|date('Y')}} {{segment}}</span>
           {% else %}
-            <span class="d-block d-footer-inline">{{segment}}</span>
+            <span class="d-block d-footer-inline mb-1 mb-footer-0">{{segment}}</span>
           {% endif %}
 
           {% if not loop.last %}
-            <span class="d-none d-footer-inline">|</span>
+            <span class="d-none d-footer-inline mb-1 mb-footer-0">|</span>
           {% endif %}
         {% endfor %}
       </div>

@@ -38,7 +38,9 @@
 
     <div class="row mt-3">
       <div class="col text-center">
-        <p class="project-navigation" {% include "partial/font-styles.twig" with {font_styles : navigation_font_styles, display_inline : true} %}><a {% include "partial/font-styles.twig" with {font_styles : navigation_font_styles, display_inline : true} %} {% if post.prev.link %}href="{{post.prev.link}}"{% else %}disabled{% endif %}><span {% include "partial/font-styles.twig" with {font_styles : navigation_font_styles, display_inline : true} %} class="prev-arrow"></span> Previous project</a> | <a {% include "partial/font-styles.twig" with {font_styles : navigation_font_styles, display_inline : true} %} {% if post.next.link %}href="{{post.next.link}}"{% else %}disabled{% endif %}>Next project <span {% include "partial/font-styles.twig" with {font_styles : navigation_font_styles, display_inline : true} %} class="next-arrow"></span></a></p>
+        <p class="project-navigation" {% include "partial/font-styles.twig" with {font_styles : navigation_font_styles, display_inline : true} %}>
+            <a {% include "partial/font-styles.twig" with {font_styles : navigation_font_styles, display_inline : true} %} {% if post.prev.link %}href="{{post.prev.link}}"{% else %}href="{{last_portfolio.link}}"{% endif %}><span {% include "partial/font-styles.twig" with {font_styles : navigation_font_styles, display_inline : true} %} class="prev-arrow"></span> Previous project</a> | <a {% include "partial/font-styles.twig" with {font_styles : navigation_font_styles, display_inline : true} %} {% if post.next.link %}href="{{post.next.link}}"{% else %}href="{{first_portfolio.link}}"{% endif %}>Next project <span {% include "partial/font-styles.twig" with {font_styles : navigation_font_styles, display_inline : true} %} class="next-arrow"></span></a>
+        </p>
       </div>
     </div>
   </div>

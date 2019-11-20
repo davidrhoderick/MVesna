@@ -26,7 +26,7 @@
     left: 0;
     border: solid $body-bg 7px;
 
-    @include media-breakpoint-down(md) {
+    @include media-breakpoint-down(sm) {
       border-left-width: 0;
       border-right-width: 0;
     }
@@ -39,7 +39,7 @@
     right: 7px;
     left: 7px;
 
-    @include media-breakpoint-down(md) {
+    @include media-breakpoint-down(sm) {
       left: 0;
       right: 0;
     }
@@ -82,23 +82,25 @@
     }
   }
 
-  &:nth-child(1) {
-    .piece-description {
-      top: 0;
+  @include media-breakpoint-down(sm) {
+    &:nth-child(1) {
+      .piece-description {
+        top: 0;
+      }
+
+      &:after {
+        border-top-width: 0 !important;
+      }
     }
 
-    &:after {
-      border-top-width: 0 !important;
-    }
-  }
+    &:nth-last-child(1) {
+      .piece-description {
+        bottom: 0;
+      }
 
-  &:nth-last-child(1) {
-    .piece-description {
-      bottom: 0;
-    }
-
-    &:after {
-      border-bottom-width: 0 !important;
+      &:after {
+        border-bottom-width: 0 !important;
+      }
     }
   }
 
