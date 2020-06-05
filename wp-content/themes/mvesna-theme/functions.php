@@ -55,6 +55,8 @@ class MVesnaThemeSite extends Timber\Site {
     add_filter('the_content', array($this, 'filter_ptags_on_images'));
     add_filter('acf_the_content', array($this, 'filter_ptags_on_images'), 30);
 
+    add_action('wp_head', array($this, 'pinterest_verification'));
+
     add_action('init', array($this, 'disable_emojis'));
 
     add_action('acf/init', array($this, 'register_font_settings_page'));
@@ -74,6 +76,15 @@ class MVesnaThemeSite extends Timber\Site {
     acf_add_options_page('Site Options');
 
     parent::__construct();
+  }
+
+  function pinterest_verification() {
+    $pinterest_verification = get_field('pinterest_verification_code', 'options');
+    if($pinterest_verification) {
+      ?>
+        <meta name="p:domain_verify" content="<?php echo $pinterest_verification; ?>"/>
+      <?php
+    }
   }
 
   function register_font_settings_page() {
