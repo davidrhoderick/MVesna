@@ -1,11 +1,11 @@
 === EWWW Image Optimizer ===
 Contributors: nosilver4u
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=MKMQKCBFFG3WW
+Donate link: https://ewww.io/donate/
 Tags: optimize, image, convert, webp, resize, compress, lazy load, optimization, lossless, lossy, seo, scale
 Requires at least: 5.0
-Tested up to: 5.3
+Tested up to: 5.4
 Requires PHP: 5.6
-Stable tag: 5.1.2
+Stable tag: 5.2.5
 License: GPLv3
 
 Speed up your website to better connect with your visitors. Properly compress and size/scale images. Includes lazy load and WebP convert.
@@ -32,9 +32,9 @@ Images can be optimized using tools on your own server for free (jpegtran, optip
 
 If you need a version of this plugin for API use only, see [EWWW Image Optimizer Cloud](https://wordpress.org/plugins/ewww-image-optimizer-cloud/). It is much more compact as it does not contain any binaries or any mention of the exec() function.
 
-= Automatic Resizing =
+= Automatic Everything =
 
-With ExactDN support, images will be automatically resized to fit the page and device size. ExactDN also enables basic retina support and automatic compression.
+With Easy IO, images are automatically compressed, scaled to fit the page and device size, lazy loaded, and converted to the next-gen WebP format.
 
 = Support =
 
@@ -59,7 +59,7 @@ All images created by the built-in WP_Image_Editor class will be automatically o
 
 = WebP Images =
 
-Automatic WebP conversion with ExactDN, no additional configuration. Otherwise, can generate WebP versions of your images, and enables you to serve even smaller images to supported browsers. Several methods are available for serving WebP images, including Apache-compatible rewrite rules and our JS WebP Rewriting option compatible with caches and CDNs. Also works with the WebP option in the Cache Enabler plugin from KeyCDN.
+Automatic WebP conversion with Easy IO, no additional configuration. Otherwise, can generate WebP versions of your images, and enables you to serve even smaller images to supported browsers. Several methods are available for serving WebP images, including Apache-compatible rewrite rules and our JS WebP Rewriting option compatible with caches and CDNs. Also works with the WebP option in the Cache Enabler plugin from KeyCDN.
 
 = WP-CLI =
 
@@ -173,50 +173,58 @@ https://developers.google.com/web/tools/lighthouse/audits/optimize-images
 * Feature requests can be viewed and submitted at https://github.com/nosilver4u/ewww-image-optimizer/labels/enhancement
 * If you would like to help translate this plugin in your language, get started here: https://translate.wordpress.org/projects/wp-plugins/ewww-image-optimizer/
 
-= 5.1.2 =
-* added: disable native lazy-load attributes with EWWWIO_DISABLE_NATIVE_LAZY
-* added: ability to choose LQIP or blank placeholders for lazy load
-* changed: renaming ExactDN as Easy IO
-* changed: default to blank placeholders with Easy IO
-* changed: regenerated images are automatically re-optimized after running Image Regenerate & Select Crop plugin
-* fixed: low-quality placeholders sometimes had larger dimensions than necessary
-* fixed: database records and .webp images are not removed when Image Regenerate & Select Crop plugin deletes a thumbnail
-* fixed: path traversal protection preventing normal files from optimizing
-* fixed: Slider Revolution dummy.png not properly handled by Easy IO
+= 5.2.5 =
+* removed: data-pin-media attribute, as Pinterest is handling WebP images properly now
 
-= 5.1.1 =
-* fixed: no optimization when escapeshellarg() is disabled
-* fixed: warning thrown by implode() when JS WebP is enabled with no WebP URLs
+= 5.2.4 =
+* fixed: data-pin-media attribute added to linked images incorrectly
+* fixed: images are not resized to max dimensions when using S3 Uploads plugin
 
-= 5.1.0 =
-* added: WebP-only mode for Bulk Optimizer
-* added: JS WebP Rewriting for pull-mode CDNs via WebP URLS without Force WebP
-* added: JS WebP Rewriting zero-conf for WP Offload Media
-* added: force lossy PNG to WebP conversion with EWWW_IMAGE_OPTIMIZER_LOSSY_PNG2WEBP override (set to true)
-* changed: bulk optimizer runs wp_update_attachment_metadata() in separate request to avoid timeouts
-* fixed: WebP warning regarding missing modules displayed even if green WebP test image is working
-* fixed: Nextgen bulk actions not working
-* fixed: unable to regenerate existing thumbnails with Image Regenerate & Select Crop plugin
-* updated: WebP (cwebp) binary to version 1.0.3
-* updated: Pngquant binary to version 2.12.5
-* updated: cwebp requires Mac OS X 10.14
-* updated: FreeBSD 10 is EOL, version 11 is the supported/tested version
+= 5.2.3 =
+* added: Easy IO sets pre-scaled image in data-pin-media for Pinterest
+* added: Envira Pro cache cleared when activating Easy IO
+* changed: improved compatibility layer with S3 Uploads plugin
+* fixed: background image lazy-loading could be interrupted by other plugins copying elements
+* fixed: JS WebP provides .webp images to Pinterest
+* fixed: JS WebP strips Pinterest data/meta attributes
+* fixed: Easy IO misses some images with Envira Gallery Pro layouts
+* fixed: missing www in domain prevents rewrites for Easy IO
+* fixed: JS WebP and Lazy Load parsing X/Pro theme admin pages
 
-= 5.0.0 =
-* added: use native lazy load attributes to supplement lazy loader and make placeholders more efficient
-* added: GCS sub-folder rewriting with ExactDN for cleaner URLs
-* added: option to optimize original versions of scaled images for WP 5.3
-* added: ability to erase optimization history from Tools page
-* changed: define EWWWIO_WPLR_AUTO (any value) to enable auto-optimize on images from WP/LR Sync
-* changed: thumbnails could be converted even if original was not
-* changed: Show Optimized Images table moved to Tools menu
-* fixed: full-size image optimization not deferred if scaled by WP 5.3
-* fixed: data-width and data-height attributes missing when JS WebP active
-* security: rewrote escapeshellarg() wrapper to be more secure
+= 5.2.2 =
+* added: automatic plan upgrade detection
+* changed: better compatibility with other implementations of "native lazy load"
+* updated: lazysizes.js to version 5.2
+* fixed: custom domain for Easy IO prevents auto-scaling
+* fixed: full-width background images auto-scaled due to scroll bars
+* fixed: overrides for array-style exclusions not being applied
+
+= 5.2.1 =
+* changed: WebP rewrite rules hidden for Cloudflare-protected sites
+* fixed: Smart Re-optimize not working for PDF files
+* fixed: Easy IO detects wrong domain when using separate domains for site and content
+
+= 5.2.0 =
+* added: Lazy Load, JS WebP, and Easy IO support background images on link elements
+* added: JS WebP supports background images on section, span, and li elements
+* added: exclude images from Easy IO in settings
+* added: exclude images from Lazy Load by string or class name
+* added: prevent auto-scaling with skip-autoscale
+* added: Folders to Optimize, Folders to Ignore, Lazy Load Exclusions, Easy IO Exclusions, and WebP URLs can be defined as overrides (single value as string, multiple values as an array)
+* added: API key, JPG Background (for conversion only), and Disabled Resizes can be defined as overrides, see https://docs.ewww.io/article/40-override-options
+* added: PNG placeholders for Lazy Load retrieved direct from API for drastically reduced memory usage (API users only)
+* added: Smart Re-optimize option available on Bulk Optimizer if you want to re-optimize images that were compressed on a different setting
+* added: auto-restore for Smart Re-optimize when going from lossy to lossless mode
+* added: Restore & Re-optimize from Media Library to change individual images from lossy to lossless
+* added: search function for Optimized Images table (Tools menu)
+* added: table cleanup for database table (Tools menu)
+* fixed: errors due to duplicate ssl= arguments in URLs
+* fixed: JS WebP has incorrect selector for video elements (props @CharlieHawker)
+* updated: embedded help code for better debug prefill
 
 = Earlier versions =
 Please refer to the separate changelog.txt file.
 
-== Contact and Credits ==
+== Credits ==
 
-Written by [Shane Bishop](https://ewww.io) with special thanks to my [Lord and Savior](https://www.iamsecond.com/). Based upon CW Image Optimizer, which was written by [Jacob Allred](http://www.jacoballred.com/) at [Corban Works, LLC](http://www.corbanworks.com/). CW Image Optimizer was based on WP Smush.it. Jpegtran is the work of the Independent JPEG Group. PEL is the work of Martin Geisler, Lars Olesen, and Erik Oskam. ExactDN and HTML parsing classes based upon the Photon module from Jetpack.
+Written by [Shane Bishop](https://ewww.io) with special thanks to my [Lord and Savior](https://www.iamsecond.com/). Based upon CW Image Optimizer, which was written by [Jacob Allred](http://www.jacoballred.com/) at [Corban Works, LLC](http://www.corbanworks.com/). CW Image Optimizer was based on WP Smush.it. Jpegtran is the work of the Independent JPEG Group. PEL is the work of Martin Geisler, Lars Olesen, and Erik Oskam. Easy IO and HTML parsing classes based upon the Photon module from Jetpack.

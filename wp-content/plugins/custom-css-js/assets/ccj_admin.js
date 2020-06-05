@@ -16,6 +16,7 @@ jQuery(document).ready( function($) {
             lineNumbers: true,
             mode: content_mode,
             matchBrackets: true,
+            autoCloseBrackets: true,
             extraKeys: {
                 "Ctrl-F": "findPersistent",
             },

@@ -172,14 +172,14 @@ if ( ! class_exists( 'EIO_Page_Parser' ) ) {
 				if ( $url_params && false !== strpos( $url_params, 'resize=' ) ) {
 					preg_match( '/resize=(\d+),(\d+)/', $url_params, $resize_matches );
 					if ( is_array( $resize_matches ) && ! empty( $resize_matches[1] ) && ! empty( $resize_matches[2] ) ) {
-						$width_param  = $resize_matches[1];
-						$height_param = $resize_matches[2];
+						$width_param  = (int) $resize_matches[1];
+						$height_param = (int) $resize_matches[2];
 					}
 				} elseif ( false !== strpos( $url_params, 'fit=' ) ) {
 					preg_match( '/fit=(\d+),(\d+)/', $url_params, $fit_matches );
 					if ( is_array( $fit_matches ) && ! empty( $fit_matches[1] ) && ! empty( $fit_matches[2] ) ) {
-						$width_param  = $fit_matches[1];
-						$height_param = $fit_matches[2];
+						$width_param  = (int) $fit_matches[1];
+						$height_param = (int) $fit_matches[2];
 					}
 				}
 			}
@@ -347,26 +347,6 @@ if ( ! class_exists( 'EIO_Page_Parser' ) ) {
 				$attribute = preg_replace( '#background-image:\s*url\([^)]+\);?#', '', $attribute );
 			}
 			return $attribute;
-		}
-
-		/**
-		 * A wrapper for PHP's parse_url, prepending assumed scheme for network path
-		 * URLs. PHP versions 5.4.6 and earlier do not correctly parse without scheme.
-		 *
-		 * @param string  $url The URL to parse.
-		 * @param integer $component Retrieve specific URL component.
-		 * @return mixed Result of parse_url.
-		 */
-		function parse_url( $url, $component = -1 ) {
-			if ( 0 === strpos( $url, '//' ) ) {
-				$url = ( is_ssl() ? 'https:' : 'http:' ) . $url;
-			}
-			if ( false === strpos( $url, 'http' ) && '/' !== substr( $url, 0, 1 ) ) {
-				$url = ( is_ssl() ? 'https://' : 'http://' ) . $url;
-			}
-			// Because encoded ampersands in the filename break things.
-			$url = str_replace( '&#038;', '&', $url );
-			return parse_url( $url, $component );
 		}
 	}
 }
